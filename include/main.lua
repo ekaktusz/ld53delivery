@@ -1,5 +1,5 @@
 function _init()
-    menu_state_init()
+    splash_state_init()
 end
 
 function _update60()

@@ -2,6 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
 #include include/main.lua
+#include include/splash_state.lua
 #include include/menu_state.lua
 #include include/game_state.lua
 #include include/vendor.lua
