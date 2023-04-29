@@ -11,8 +11,11 @@ end
 
 function menu_state_update()
     if btnp(❎) then
-        --game_state_init()
         transition_start(menu_state.close_tran)
+    end
+
+    if transition_is_finished(menu_state.close_tran) then
+        game_state_init()
     end
 
     transition_update(menu_state.close_tran)
