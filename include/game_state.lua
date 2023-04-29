@@ -22,11 +22,10 @@ end
 function game_state_draw()
     cls(1)
     map()
-    print("game_state")
-    print(mouse.click)
-    mouse_draw()
+    
     player_draw()
     inventory_draw()
 
+    mouse_draw()
     transition_draw(game_state.open_transition)
 end
