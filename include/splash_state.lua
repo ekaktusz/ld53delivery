@@ -4,7 +4,7 @@ local function print_angle(s, x, y, c, a)
     for i=1,#s do
         print(sub(s,i,i), x, y, c)
         x += cos(a) * 4
-        y += sin(a) * 6
+        y += sin(a) * 4
     end
 end
    
@@ -18,13 +18,13 @@ function splash_state_init()
     splash_state.link = false
     splash_state.timer1 = 0
     splash_state.close_tran = transition_new(0.025, "close")
-    splash_state.bgcolor = 5
+    splash_state.bgcolor = 0
     splash_state.fccolor = 7
     splash_state.mcolor = 8
 end
 
 function splash_state_update()
-    splash_state.angle += 0.01
+    splash_state.angle += 0.02
 
     if splash_state.angle > 1.015 then
         splash_state.angle = 1.015
@@ -37,7 +37,7 @@ function splash_state_update()
             splash_state.show_face = true
             splash_state.hat_color = 1
         else
-            splash_state.hat_color = splash_state.timer1 * 7 % 15
+            splash_state.hat_color = splash_state.timer1 * 10 % 14 + 3
         end
         if splash_state.timer1 > 1.5 then
             splash_state.blink = true
