@@ -4,7 +4,7 @@ function game_state_init()
     _update60 = game_state_update
     _draw = game_state_draw
 
-    game_state.open_transition = transition_new(0.03, "open")
+    game_state.open_transition = transition_new(0.05, "open")
     transition_start(game_state.open_transition)
 end
 

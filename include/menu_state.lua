@@ -6,7 +6,7 @@ function menu_state_init()
 
     menu_state.wavy_f = 0
     
-    menu_state.close_tran = transition_new(0.03, "close")
+    menu_state.close_tran = transition_new(0.05, "close")
 end
 
 function menu_state_update()
