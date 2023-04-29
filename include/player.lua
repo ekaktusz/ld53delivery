@@ -1,15 +1,18 @@
 player = {}
 
 function player_init()
-    player.x = 0
-    player.y = 0
+    player.x = 30
+    player.y = 30
+    player.w =  16
+    player.h = 16
     player.dx = 0
     player.dy = 0
-    player.spr = 16
+    player.sprx = 16
+    player.spry = 0
 end
 
 function player_draw()
-    sspr(player.spr,0,16,16,player.x,player.y)
+    sspr(player.sprx,player.spry,player.w,player.h,player.x,player.y)
 end
 
 function player_udpate()
@@ -32,8 +35,14 @@ function player_udpate()
         player.dy /= sqrt(2)
     end
 
-    player.x += player.dx
-    player.y += player.dy
+    if can_move(player.x+player.dx, player.y, player.w, player.h) then
+        player.x += player.dx
+    end
+
+    if can_move(player.x, player.y+player.dy, player.w, player.h) then
+        player.y += player.dy
+    end
+    
     player.dx = 0
     player.dy = 0
 end

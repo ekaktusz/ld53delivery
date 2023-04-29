@@ -8,6 +8,7 @@ function game_state_init()
     transition_start(game_state.open_transition)
     mouse_init()
     player_init()
+    inventory_init()
 end
 
 function game_state_update()
@@ -15,6 +16,7 @@ function game_state_update()
     transition_update(game_state.open_transition)
     player_udpate()
     camera_set_position(player.x - 61, player.y - 61)
+    inventory_update()
 end
 
 function game_state_draw()
@@ -22,7 +24,9 @@ function game_state_draw()
     map()
     print("game_state")
     print(mouse.click)
-    spr(0, mouse.x, mouse.y)
-    transition_draw(game_state.open_transition)
+    mouse_draw()
     player_draw()
+    inventory_draw()
+
+    transition_draw(game_state.open_transition)
 end

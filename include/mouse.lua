@@ -8,7 +8,7 @@ function mouse_init()
 end
 
 function mouse_draw()
-    spr(0,stat(32)-1,stat(33)-1)
+    spr(0,stat(32)+cam.x-1,stat(33)+cam.y-1)
 end
 
 function mouse_update()

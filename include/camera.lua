@@ -1,12 +1,23 @@
-local cam = {}
+cam = {
+    x = 0,
+    y = 0
+}
 
 function camera_set_position(x,y)
-    cam_x = mid(0,x,cam.max_x or 896)
-    cam_y = mid(0,y,cam.max_x or 128)
-    camera(cam_x, cam_y)
+    cam.x = mid(0,x,cam.max_x or 896)
+    cam.y = mid(0,y,cam.max_x or 128)
+    camera(cam.x, cam.y)
 end
 
 function camera_set_limits(x, y)
     cam.max_x = x
     cam.max_y = y
+end
+
+function camera_to_world(_x, _y)
+    return {x=x+cam.x, y=y+cam.y} 
+end
+
+function camera_to_cam(_x, _y)
+    return {x=_x-cam.x, y=_y-cam.y} 
 end
