@@ -1,11 +1,50 @@
-tran_duration = 2.5
+local tran_duration = 2.5
 
-function close_transition(t)
+-- type "open" or "close"
+function transition_new(_speed, _type)
+    local transition = { 
+        t = 0,
+        s = _speed,
+        started = false,
+        type = _type
+    }
+    return transition
+end
+
+function transition_start(tran)
+    tran.started = true
+end
+
+function transition_update(tran)
+    if not tran.started then
+        return
+    end
+
+    tran.t += tran.s
+end
+
+function transition_is_finished(tran)
+    if (tran.type == "close") then
+        return tran.t >= tran_duration
+    elseif (tran.type == "open") then
+        return tran.t <= 0
+    end
+end
+
+function transition_draw(tran)
+    if (tran.type == "close") then
+        draw_close_transition(tran.t)
+    elseif (tran.type == "open") then
+        draw_open_transition(tran.t)
+    end
+end
+
+function draw_close_transition(t)
     if (t > tran_duration) then t=tran_duration end
     draw_transition(t)
 end
 
-function open_transition(t)
+function draw_open_transition(t)
     t = tran_duration-t
     if (t < 0) then return end
     draw_transition(t)
