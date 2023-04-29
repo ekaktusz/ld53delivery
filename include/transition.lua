@@ -1,10 +1,14 @@
+tran_duration = 2.5
+
 function close_transition(t)
-    if (t > 2.5) then t=2.5 end
+    if (t > tran_duration) then t=tran_duration end
     draw_transition(t)
 end
 
 function open_transition(t)
-
+    t = tran_duration-t
+    if (t < 0) then return end
+    draw_transition(t)
 end
 
 function draw_transition(t)
