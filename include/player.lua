@@ -8,6 +8,11 @@ function player_init()
     player.dx = 0
     player.dy = 0
 
+    player.acc = 1
+
+    player.energy = 0.7
+    player.anxiety = 0.19
+
     local frames = { {x=16, y=0, w=16, h=16}, {x=16, y=16, w=16, h=16} }
     player.idle_anim = animation_new(frames, 20)
 end
@@ -22,16 +27,16 @@ function player_udpate()
 
     -- ⬆️, ⬇️, ⬅️, ➡️, 🅾️, and ❎
     if btn(⬅️) then
-        player.dx -= 1
+        player.dx -= player.acc + player.acc * player.energy
     end
     if btn(➡️) then
-        player.dx += 1
+        player.dx += player.acc + player.acc * player.energy
     end
     if btn(⬆️) then
-        player.dy -= 1
+        player.dy -= player.acc + player.acc * player.energy
     end
     if btn(⬇️) then
-        player.dy += 1
+        player.dy += player.acc + player.acc * player.energy
     end
 
     if player.dx != 0 and player.dy != 0 then

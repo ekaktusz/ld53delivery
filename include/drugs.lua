@@ -50,14 +50,33 @@ end
 function drug_sell(drug)
     inventory_remove_drug(drug)
     mouse.dragged = false
+    
+    if (drug.type == "marijuana") then 
+        money+=20
+    elseif (drug.type == "ecstasy") then 
+        money+=30
+    elseif (drug.type == "cocaine") then 
+        money+=100
+    end
+
     drug = nil
-    money+=10
+    player.anxiety += 0.1
 end
 
 function drug_use(drug)
     inventory_remove_drug(drug)
     mouse.dragged = false
-    money-=10
+    
+    if (drug.type == "marijuana") then 
+        player.anxiety -= 0.5
+        player.energy -= 0.3
+    elseif (drug.type == "ecstasy") then 
+        player.energy += 0.5
+        player.anxiety += 0.2
+    elseif (drug.type == "cocaine") then 
+        player.energy = 0.7
+        player.anxiery = 0.19
+    end
 end
 
 function drug_draw(drug)

@@ -29,8 +29,8 @@ function inventory_draw()
         end
     end
 
-    rectfill(cam.x+127-16, 105+cam.y, 127+cam.x, 112+cam.y,7) -- outside 
-    rectfill(cam.x+127-15, 106+cam.y, 126+cam.x, 112+cam.y,0) -- inside 
+    rectfill(cam.x+127-35, 105+cam.y, 127+cam.x, 112+cam.y,7) -- outside 
+    rectfill(cam.x+127-34, 106+cam.y, 126+cam.x, 112+cam.y,0) -- inside 
     print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), 107+cam.y, 11)
 end
 

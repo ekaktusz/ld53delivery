@@ -24,7 +24,7 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                money-=10
+                if (money>=12) money-=12
                 inventory_add_drug(drug_new("marijuana"))
             end
         end
@@ -34,7 +34,7 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                money-=15
+                if (money>=12) money-=15
                 inventory_add_drug(drug_new("ecstasy"))
             end
         end
@@ -44,7 +44,7 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                money-=20
+                if (money>=12) money-=42
                 inventory_add_drug(drug_new("cocaine"))
             end
         end
@@ -92,9 +92,9 @@ local function dealer_draw_shop()
     print("molly", sx + flr(shop.w/3),  sy + offset_y + flr(shop.h/3),7)
     print("coke",  sx + flr(shop.w/3), sy + offset_y + flr(shop.h/3)*2,7)
 
-    print("$10", sx + flr(shop.w/3),  sy + offset_y + 8, 7)
-    print("$15", sx + flr(shop.w/3),  sy + offset_y + 8 + flr(shop.h/3),7)
-    print("$20",  sx + flr(shop.w/3), sy + offset_y + 8 + flr(shop.h/3)*2,7)
+    print("$12", sx + flr(shop.w/3),  sy + offset_y + 8, 7)
+    print("$18", sx + flr(shop.w/3),  sy + offset_y + 8 + flr(shop.h/3),7)
+    print("$42",  sx + flr(shop.w/3), sy + offset_y + 8 + flr(shop.h/3)*2,7)
 
     button_draw(dealer.buy_btn1)
     button_draw(dealer.buy_btn2)

@@ -34,4 +34,6 @@ function menu_state_draw()
     
     transition_draw(menu_state.close_tran)
     transition_draw(menu_state.open_transition)
+
+    print(stat(9),cam.x+120,cam.y+120,7)
 end
