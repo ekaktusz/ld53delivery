@@ -6,6 +6,7 @@ function mouse_init()
     mouse.y = 0
     mouse.click = false
     mouse.triggered = false
+    mouse.dragged = false
     mouse.spr = 0
     mouse.idlespr = 0
     mouse.actspr = 1
@@ -25,7 +26,7 @@ function mouse_update()
         mouse.click = false
     end
 
-    if mouse.click then
+    if mouse.dragged then
         mouse.spr = mouse.dragspr
     elseif mouse.triggered then
         mouse.spr = mouse.actspr
@@ -34,6 +35,7 @@ function mouse_update()
     end
 
     mouse.triggered = false
+    mouse.dragged = false
 end
 
 function mouse_in_area(x, y, w, h)
