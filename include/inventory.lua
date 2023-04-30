@@ -23,7 +23,8 @@ function inventory_draw()
     rectfill(1+cam.x, 106+cam.y, cam.x+9*4+1, 113+cam.y, 0) -- inside
     print("inventory", 2+cam.x, 107+cam.y, 7) --text
 
-    for item in all(inventory.items) do
+    for i=1,8,1 do
+        local item = inventory.items[i]
         if item != nil then
             drug_draw(item)
         end
