@@ -1,7 +1,7 @@
 function get_objects_for_sprite_num(spriten,w,h,type)
     local _w = w or 8
     local _h = h or 8
-    local _type = type or "snail"
+    local _type = type
     local t = {}
     for i=0,127,1 do
         for j=0,32,1 do

@@ -34,7 +34,7 @@ local function customer_draw(customer)
 end
 
 function customers_load()
-    local snails = get_objects_for_sprite_num(8,16,16)
+    local snails = get_objects_for_sprite_num(8,16,16,"snail")
     table_concat(customers, snails)
 end
 
