@@ -7,7 +7,7 @@ function get_objects_for_sprite_num(spriten,w,h,type)
         for j=0,32,1 do
             local sprite_num = mget(i,j)
             if (sprite_num == spriten) then
-                obj = {x=i*8,y=j*8,w=_w,h=_h,type=_type}
+                obj = customer_new(i*8,j*8,_w,_h,_type)
                 add(t, obj)
                 mset(i,j,21)
                 if _w==16 then
