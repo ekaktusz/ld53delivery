@@ -16,7 +16,7 @@ function dealer_init()
     dealer.buy_btn1 = button_new(shop.x + flr(shop.w/3)*2, shop.y + 3,                 flr(shop.w/3)-1, 12, "buy")
     dealer.buy_btn2 = button_new(shop.x + flr(shop.w/3)*2, shop.y+flr(shop.h/3) + 3,   flr(shop.w/3)-1, 12, "buy")
     dealer.buy_btn3 = button_new(shop.x + flr(shop.w/3)*2, shop.y+flr(shop.h/3)*2 + 3, flr(shop.w/3)-1, 12, "buy")
-    dealer.close_btn = button_new(shop.x + shop.w - 6, shop.y -8, 6, 8, "x", 9, 8, 0)
+    dealer.close_btn = button_new(shop.x + shop.w - 6, shop.y -8, 6, 8, "x", 9, 8, 0, 9)
     dealer.close_btn.on_click = function()
         dealer.in_shop = false
     end
