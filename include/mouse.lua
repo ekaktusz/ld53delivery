@@ -5,6 +5,7 @@ function mouse_init()
     mouse.x = 0
     mouse.y = 0
     mouse.click = false
+    mouse.old_click = false
     mouse.triggered = false
     mouse.dragged = false
     mouse.spr = 0
@@ -18,6 +19,7 @@ function mouse_draw()
 end
 
 function mouse_update()
+    mouse.old_click = mouse.click
     if stat(34)==1 then
         mouse.click = true
     else

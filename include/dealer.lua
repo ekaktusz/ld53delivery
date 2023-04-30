@@ -20,6 +20,12 @@ function dealer_init()
     dealer.close_btn.on_click = function()
         dealer.in_shop = false
     end
+    dealer.buy_btn1.on_click = function()
+        --inventory_add_drug("marijuana")
+        if not mouse.old_click and mouse.click then
+            money-=10
+        end
+    end
 end
 
 
@@ -39,29 +45,32 @@ function dealer_update()
 end
 
 local function dealer_draw_shop()
-    rectfill(shop.x, shop.y-8, shop.x+shop.w, shop.y, 7)
-    rectfill(shop.x+1, shop.y-7, shop.x+shop.w-1, shop.y-1, 0)
-    print("shop", shop.x+2, shop.y-6, 7)
+    local sx = shop.x + cam.x
+    local sy = shop.y + cam.y
 
-    rectfill(shop.x, shop.y, shop.x+shop.w, shop.y+shop.h, 7)
-    rectfill(shop.x+1, shop.y+1, shop.x+shop.w-1, shop.y+shop.h-1, 0)
+    rectfill(sx, sy-8, sx+shop.w, sy, 7)
+    rectfill(sx+1, sy-7, sx+shop.w-1, sy-1, 0)
+    print("shop", sx+2, sy-6, 7)
+
+    rectfill(sx, sy, sx+shop.w, sy+shop.h, 7)
+    rectfill(sx+1, sy+1, sx+shop.w-1, sy+shop.h-1, 0)
     
     local offset_x = 2
     local offset_y = 1
     
-    sspr(48, 0, 16, 16, shop.x + offset_x, shop.y + offset_y) -- marijuana
-    sspr(96, 0, 16, 16, shop.x + offset_x, shop.y + offset_y + flr(shop.h/3)) -- ecstasy
-    sspr(80, 0, 16, 16, shop.x + offset_x, shop.y + offset_y + flr(shop.h/3*2)) -- cocaine
+    sspr(48, 0, 16, 16, sx + offset_x, sy + offset_y) -- marijuana
+    sspr(96, 0, 16, 16, sx + offset_x, sy + offset_y + flr(shop.h/3)) -- ecstasy
+    sspr(80, 0, 16, 16, sx + offset_x, sy + offset_y + flr(shop.h/3*2)) -- cocaine
 
     offset_y = 2
 
-    print("weed", shop.x + flr(shop.w/3),  shop.y + offset_y, 7)
-    print("molly", shop.x + flr(shop.w/3),  shop.y + offset_y + flr(shop.h/3),7)
-    print("coke",  shop.x + flr(shop.w/3), shop.y + offset_y + flr(shop.h/3)*2,7)
+    print("weed", sx + flr(shop.w/3),  sy + offset_y, 7)
+    print("molly", sx + flr(shop.w/3),  sy + offset_y + flr(shop.h/3),7)
+    print("coke",  sx + flr(shop.w/3), sy + offset_y + flr(shop.h/3)*2,7)
 
-    print("$10", shop.x + flr(shop.w/3),  shop.y + offset_y + 8, 7)
-    print("$15", shop.x + flr(shop.w/3),  shop.y + offset_y + 8 + flr(shop.h/3),7)
-    print("$20",  shop.x + flr(shop.w/3), shop.y + offset_y + 8 + flr(shop.h/3)*2,7)
+    print("$10", sx + flr(shop.w/3),  sy + offset_y + 8, 7)
+    print("$15", sx + flr(shop.w/3),  sy + offset_y + 8 + flr(shop.h/3),7)
+    print("$20",  sx + flr(shop.w/3), sy + offset_y + 8 + flr(shop.h/3)*2,7)
 
     button_draw(dealer.buy_btn1)
     button_draw(dealer.buy_btn2)
