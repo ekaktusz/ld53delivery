@@ -23,7 +23,30 @@ function dealer_init()
     dealer.buy_btn1.on_click = function()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
-            money-=10
+            if not inventory_is_full() then
+                money-=10
+                inventory_add_drug(drug_new("marijuana"))
+            end
+        end
+    end
+
+    dealer.buy_btn2.on_click = function()
+        --inventory_add_drug("marijuana")
+        if not mouse.old_click and mouse.click then
+            if not inventory_is_full() then
+                money-=15
+                inventory_add_drug(drug_new("ecstasy"))
+            end
+        end
+    end
+
+    dealer.buy_btn3.on_click = function()
+        --inventory_add_drug("marijuana")
+        if not mouse.old_click and mouse.click then
+            if not inventory_is_full() then
+                money-=20
+                inventory_add_drug(drug_new("cocaine"))
+            end
         end
     end
 end

@@ -70,3 +70,13 @@ function inventory_remove_drug(drug)
         end
     end
 end
+
+function inventory_is_full()
+    for i=1,8,1 do
+        local item = inventory.items[i]
+        if item == nil then
+            return false
+        end
+    end
+    return true
+end
