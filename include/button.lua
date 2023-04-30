@@ -1,4 +1,4 @@
-function button_new(_x,_y,_w,_h,_text)
+function button_new(_x,_y,_w,_h,_text,_click_c, _bg_c, _text_c)
     local button = {
         x=_x,
         y=_y,
@@ -6,7 +6,9 @@ function button_new(_x,_y,_w,_h,_text)
         h=_h,
         text=_text,
         on_click = nil,
-        click_c = 3,
+        click_c = _click_c or 3,
+        bg_c = _bg_c or 0,
+        text_c = _text_c or 7,
         c = 0
     }
     return button
@@ -15,7 +17,7 @@ end
 function button_draw(button)
     rectfill(button.x+cam.x, button.y+cam.y, button.x+cam.x+button.w, button.y+cam.y+button.h, 7)
     rectfill(button.x+cam.x+1, button.y+cam.y+1, button.x+cam.x+button.w-1, button.y+cam.y+button.h-1, button.c)
-    print("buy",button.x+cam.x+2, button.y+cam.y+2,7)
+    print(button.text,button.x+cam.x+2, button.y+cam.y+2,button.text_c)
 end
 
 function button_update(button)
@@ -25,6 +27,6 @@ function button_update(button)
             button.on_click()
         end
     else
-        button.c = 0
+        button.c = button.bg_c
     end
 end

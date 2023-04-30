@@ -12,10 +12,14 @@ function dealer_init()
         w = 64,
         h = 56
     }
-    dealer.in_shop = true
+    dealer.in_shop = false
     dealer.buy_btn1 = button_new(shop.x + flr(shop.w/3)*2, shop.y + 3,                 flr(shop.w/3)-1, 12, "buy")
     dealer.buy_btn2 = button_new(shop.x + flr(shop.w/3)*2, shop.y+flr(shop.h/3) + 3,   flr(shop.w/3)-1, 12, "buy")
     dealer.buy_btn3 = button_new(shop.x + flr(shop.w/3)*2, shop.y+flr(shop.h/3)*2 + 3, flr(shop.w/3)-1, 12, "buy")
+    dealer.close_btn = button_new(shop.x + shop.w - 6, shop.y -8, 6, 8, "x", 9, 8, 0)
+    dealer.close_btn.on_click = function()
+        dealer.in_shop = false
+    end
 end
 
 
@@ -24,10 +28,21 @@ function dealer_update()
         button_update(dealer.buy_btn1)
         button_update(dealer.buy_btn2)
         button_update(dealer.buy_btn3)
+        button_update(dealer.close_btn)
+    else
+        if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) then
+            if mouse.click then
+                dealer_enter_shop()
+            end
+        end
     end
 end
 
 local function dealer_draw_shop()
+    rectfill(shop.x, shop.y-8, shop.x+shop.w, shop.y, 7)
+    rectfill(shop.x+1, shop.y-7, shop.x+shop.w-1, shop.y-1, 0)
+    print("shop", shop.x+2, shop.y-6, 7)
+
     rectfill(shop.x, shop.y, shop.x+shop.w, shop.y+shop.h, 7)
     rectfill(shop.x+1, shop.y+1, shop.x+shop.w-1, shop.y+shop.h-1, 0)
     
@@ -51,6 +66,7 @@ local function dealer_draw_shop()
     button_draw(dealer.buy_btn1)
     button_draw(dealer.buy_btn2)
     button_draw(dealer.buy_btn3)
+    button_draw(dealer.close_btn)
 end
 
 function dealer_draw()
