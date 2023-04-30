@@ -8,7 +8,7 @@ function player_init()
     player.dx = 0
     player.dy = 0
 
-    player.acc = 1
+    player.acc = 0.75
 
     player.energy = 0.7
     player.anxiety = 0.19

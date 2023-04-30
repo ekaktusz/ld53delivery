@@ -1,6 +1,7 @@
 local game_state = {}
 
-function game_state_init()
+function game_state_init()    
+    reload(0x1000, 0x1000, 0x2000)
     _update60 = game_state_update
     _draw = game_state_draw
 
@@ -64,11 +65,9 @@ function game_state_update()
         end
     end
 
-    bar_update(energy_bar, player.energy)
-    bar_update(anxiety_bar, player.anxiety)
-
     if player.anxiety >= 1 then
         -- TODO game over
+        game_state_init()
     elseif player.anxiety <= 0 then
         player.anxiety = 0
     end
@@ -76,10 +75,13 @@ function game_state_update()
 
     if player.energy <= 0 then
         -- TODO game over
+        game_state_init()
     elseif player.energy >= 1 then
         player.energy = 1
     end
 
+    bar_update(energy_bar, player.energy)
+    bar_update(anxiety_bar, player.anxiety)
 end
 
 function game_state_draw()

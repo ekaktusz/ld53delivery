@@ -24,8 +24,10 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if (money>=12) money-=12
-                inventory_add_drug(drug_new("marijuana"))
+                if money>=12 then
+                    money-=12
+                    inventory_add_drug(drug_new("marijuana"))
+                end
             end
         end
     end
@@ -34,8 +36,10 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if (money>=12) money-=15
-                inventory_add_drug(drug_new("ecstasy"))
+                if money>=15 then
+                    money-=15
+                    inventory_add_drug(drug_new("ecstasy"))
+                end
             end
         end
     end
@@ -44,8 +48,10 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if (money>=12) money-=42
-                inventory_add_drug(drug_new("cocaine"))
+                if money>=42 then
+                    money-=42
+                    inventory_add_drug(drug_new("cocaine"))
+                end
             end
         end
     end

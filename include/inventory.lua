@@ -1,7 +1,7 @@
 inventory = {}
 
 function inventory_init()
-    inventory.items = {nil, drug_new("marijuana"), drug_new("cocaine"), nil, nil, nil, nil, nil}
+    inventory.items = {nil, drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), nil, nil, nil}
     inventory.x = 0
     inventory.y = 0
     inventory.w = 127
