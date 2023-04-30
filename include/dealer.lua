@@ -59,7 +59,7 @@ function dealer_update()
         button_update(dealer.buy_btn3)
         button_update(dealer.close_btn)
     else
-        if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) then
+        if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) and not mouse.dragged then
             if mouse.click then
                 dealer_enter_shop()
             end

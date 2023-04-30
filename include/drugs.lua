@@ -39,9 +39,10 @@ function drug_update(drug)
                     drug_use(drug)
                 end
             end
-
-            drug.dragged = false
-            mouse.dragged = false
+            if not mouse.click and mouse.old_click then
+                drug.dragged = false
+                mouse.dragged = false
+            end
         end
     end
 end
@@ -55,6 +56,7 @@ end
 
 function drug_use(drug)
     inventory_remove_drug(drug)
+    mouse.dragged = false
     money-=10
 end
 
