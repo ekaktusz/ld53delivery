@@ -12,11 +12,14 @@ function game_state_init()
 end
 
 function game_state_update()
-    mouse_update()
-    transition_update(game_state.open_transition)
+    
     player_udpate()
+    
+    transition_update(game_state.open_transition)
+    
     camera_set_position(player.x - 61, player.y - 61)
     inventory_update()
+    mouse_update()
 end
 
 function game_state_draw()

@@ -18,8 +18,6 @@ function mouse_draw()
 end
 
 function mouse_update()
-    mouse.x = stat(32)+cam.x-1
-    mouse.y = stat(33)+cam.y-1
     if stat(34)==1 then
         mouse.click = true
     else
@@ -35,9 +33,9 @@ function mouse_update()
     end
 
     mouse.triggered = false
-    mouse.dragged = false
+    --mouse.dragged = false
 end
 
 function mouse_in_area(x, y, w, h)
-    return (mouse.x >= x and mouse.x <= x+w and mouse.y >=y and mouse.y <= y+h)
+    return (stat(32)+cam.x-1 >= x and stat(32)+cam.x-1 <= x+w and stat(33)+cam.y-1 >=y and stat(33)+cam.y-1 <= y+h)
 end

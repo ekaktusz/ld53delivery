@@ -28,7 +28,7 @@ function inventory_draw()
         end
     end
     
-    print(mouse.click)
+    print(mouse.click, cam.x, cam.y)
 
     print("inventory", 1+cam.x, 107+cam.y, 7) --text
 end
@@ -37,32 +37,26 @@ function inventory_update()
     inventory.x = cam.x
     inventory.y = cam.y + 112
 
+    log("inventory_update")
+
     for i=1,8,1 do
         local item = inventory.items[i]
         if item != nil then
-            if item.dragged then
-                item.x = stat(32)+cam.x-1
-                item.y = stat(33)+cam.y-1
-            else
+            log("item not nil")
+            if not item.dragged then
                 item.x = inventory.x + (i-1) * item.w
                 item.y = inventory.y
             end
             drug_update(item)
         end
     end
-
-    for item in all(inventory.items) do
-        if item != nil then
-           -- drug_update(item)
-        end
-    end
-    
 end
 
 function inventory_add_drug(drug)
     for i=1,8,1 do
         local item = inventory.items[i]
         if item == nil then
+            --add(inventory.items,drug,i)
             inventory.items[i] = drug
             return
         end
