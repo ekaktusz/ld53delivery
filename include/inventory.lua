@@ -1,7 +1,7 @@
 inventory = {}
 
 function inventory_init()
-    inventory.items = {nil, drug_new("marijuana"), nil, nil, nil, nil, nil, nil}
+    inventory.items = {nil, drug_new("marijuana"), drug_new("cocaine"), nil, nil, nil, nil, nil}
     inventory.x = 0
     inventory.y = 0
     inventory.w = 127
@@ -28,8 +28,6 @@ function inventory_draw()
         end
     end
     
-    print(mouse.click, cam.x, cam.y)
-
     print("inventory", 1+cam.x, 107+cam.y, 7) --text
 end
 
@@ -37,12 +35,9 @@ function inventory_update()
     inventory.x = cam.x
     inventory.y = cam.y + 112
 
-    log("inventory_update")
-
     for i=1,8,1 do
         local item = inventory.items[i]
         if item != nil then
-            log("item not nil")
             if not item.dragged then
                 item.x = inventory.x + (i-1) * item.w
                 item.y = inventory.y

@@ -9,11 +9,15 @@ function game_state_init()
     mouse_init()
     player_init()
     inventory_init()
+    customers_load()
+    
+    money = 0
 end
 
 function game_state_update()
     
     player_udpate()
+    customers_update()
     
     transition_update(game_state.open_transition)
     
@@ -27,7 +31,11 @@ function game_state_draw()
     map()
     
     player_draw()
+    customers_draw()
+
     inventory_draw()
+
+    print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), cam.y)
 
     mouse_draw()
     transition_draw(game_state.open_transition)
