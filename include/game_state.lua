@@ -68,6 +68,8 @@ function game_state_draw()
     bar_draw(energy_bar)
     bar_draw(anxiety_bar)
 
+    print(stat(9),cam.x+120,cam.y+120,7)
+
     --print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), cam.y+2, 3)
     
 

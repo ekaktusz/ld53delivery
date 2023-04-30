@@ -60,6 +60,7 @@ function dealer_update()
         button_update(dealer.close_btn)
     else
         if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) and not mouse.dragged then
+            mouse.triggered = true
             if mouse.click then
                 dealer_enter_shop()
             end
