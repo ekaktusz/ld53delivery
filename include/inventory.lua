@@ -1,14 +1,83 @@
 inventory = {}
 
 function inventory_init()
-    
+    inventory.items = {nil, drug_new("marijuana"), nil, nil, nil, nil, nil, nil}
+    inventory.x = 0
+    inventory.y = 0
+    inventory.w = 127
+    inventory.h = 15
+
+    local eki = drug_new("ecstasy")
+    inventory_add_drug(eki)
 end
 
 function inventory_draw()
-    rectfill(0+cam.x,112+cam.y,127+cam.x,127+cam.y,7)
-    rectfill(1+cam.x,113+cam.y,126+cam.x,126+cam.y,0)
+    rectfill(inventory.x,inventory.y,inventory.x+inventory.w,inventory.y+inventory.h,7) -- outside
+    rectfill(inventory.x+1,inventory.y+1,inventory.x+inventory.w-1,inventory.y+inventory.h-1,0) -- inside
+
+    -- Each character in the PICO-8 system font appears to be 3 pixels wide 
+    -- and 5 pixels tall, but the font includes a 1-pixel wide gap on the right, 
+    -- and a 1-pixel-tall gap on the bottom, so the final size is actually 
+    -- 4 pixels wide and 6 pixels high. 
+    rectfill(cam.x,106+cam.y,cam.x+9*4+1,112+cam.y,7) -- outside 
+    rectfill(1+cam.x,107+cam.y,cam.x+9*4,113+cam.y,0) -- inside
+
+    for item in all(inventory.items) do
+        if item != nil then
+            drug_draw(item)
+        end
+    end
+    
+    print(mouse.click)
+
+    print("inventory", 1+cam.x, 107+cam.y, 7) --text
 end
 
 function inventory_update()
+    inventory.x = cam.x
+    inventory.y = cam.y + 112
 
+    
+
+    for i=1,8,1 do
+        local item = inventory.items[i]
+        if item != nil then
+            if item.dragged then
+                item.x = mouse.x
+                item.y = mouse.y
+            else
+                item.x = inventory.x + (i-1) * item.w
+                item.y = inventory.y
+            end
+            
+            drug_update(item)
+        end
+    end
+
+    for item in all(inventory.items) do
+        if item != nil then
+           -- drug_update(item)
+        end
+    end
+    
+end
+
+function inventory_add_drug(drug)
+    for i=1,8,1 do
+        local item = inventory.items[i]
+        if item == nil then
+            inventory.items[i] = drug
+            return
+        end
+    end
+end
+
+function inventory_remove_drug(drug)
+    for i=1,8,1 do
+        local item = inventory.items[i]
+        if item == drug then
+            inventory.items[i] = nil
+            return
+        end
+    end
 end
