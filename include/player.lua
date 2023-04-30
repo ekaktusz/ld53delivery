@@ -7,15 +7,19 @@ function player_init()
     player.h = 16
     player.dx = 0
     player.dy = 0
-    player.sprx = 16
-    player.spry = 0
+
+    local frames = { {x=16, y=0, w=16, h=16}, {x=16, y=16, w=16, h=16} }
+    player.idle_anim = animation_new(frames, 20)
 end
 
 function player_draw()
-    sspr(player.sprx,player.spry,player.w,player.h,player.x,player.y)
+    --sspr(player.sprx,player.spry,player.w,player.h,player.x,player.y)
+    animation_draw(player.idle_anim, player.x, player.y)
 end
 
 function player_udpate()
+    animation_update(player.idle_anim)
+
     -- ⬆️, ⬇️, ⬅️, ➡️, 🅾️, and ❎
     if btn(⬅️) then
         player.dx -= 1

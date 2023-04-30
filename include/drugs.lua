@@ -26,7 +26,11 @@ function drug_update(drug)
         else 
             if drug.dragged then 
                 for customer in all(customers) do
-                    if mouse_in_area(customer.x, customer.y, customer.w, customer.h) then
+                    pcenter = get_center(player.x,player.y,player.w,player.h)
+                    ccenter = get_center(customer.x,customer.y,customer.w,customer.h)
+                    if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
+                    and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 30)
+                     then
                         drug_sell(drug)
                     end
                 end
