@@ -52,9 +52,11 @@ function game_state_draw()
     rectfill(cam.x+1,cam.y+1,cam.x+126,cam.y+7,0) -- inside
     
     local time_size = 34
-    rectfill(cam.x+127-time_size,   cam.y+8,    cam.x+127,  cam.y+15,7) -- outside
-    rectfill(cam.x+127-time_size+1, cam.y+7,    cam.x+126,  cam.y+14,0) -- inside
-    print("01:27 am", cam.x+127-time_size +2, cam.y+7 +2,7)
+    local clock_x = cam.x+127-time_size
+    local clock_y = cam.y+8
+    rectfill(clock_x,  clock_y, clock_x+time_size,  clock_y + 7,7) -- outside
+    rectfill(clock_x+1, clock_y-1, clock_x+time_size-1,  clock_y + 6, 0) -- inside
+    print("01:27 am", clock_x +2, clock_y + 1,7)
 
     print("energy:",cam.x+energy_bar.x-28, cam.y+energy_bar.y, 7)
     print("anxiety:",cam.x+anxiety_bar.x-32, cam.y+2, 7)
