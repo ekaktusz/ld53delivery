@@ -1,9 +1,7 @@
 dealer = {}
 
 function dealer_init()
-    dealer = get_objects_for_sprite_num(36,16,16,"dealer")[1]
-    local frames = { {x=32, y=16, w=16, h=16}, {x=48, y=16, w=16, h=16} }
-    dealer.animation = animation_new(frames, 20)
+    dealer = get_objects_for_sprite_num(134,32,16,"dealer")[1]
 
     --shop
     shop = {
@@ -109,7 +107,8 @@ local function dealer_draw_shop()
 end
 
 function dealer_draw()
-    animation_draw(dealer.animation, dealer.x, dealer.y)
+    --animation_draw(dealer.animation, dealer.x, dealer.y)
+    sspr(48,64,dealer.w,dealer.h,dealer.x,dealer.y)
 
     if dealer.in_shop then
         dealer_draw_shop()

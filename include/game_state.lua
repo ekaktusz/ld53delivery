@@ -16,8 +16,8 @@ function game_state_init()
     energy_bar = bar_new(30, 2, 30, 4,7,8)
     anxiety_bar = bar_new(95, 2, 30, 4,7,12)
 
-    --palt(1, true) -- beige color as transparency is true
-    --palt(0, false) -- black color as transparency is false
+    palt(12, true) -- beige color as transparency is true
+    palt(0, false) -- black color as transparency is false
 
     in_game_time = {
         hours = 0,
