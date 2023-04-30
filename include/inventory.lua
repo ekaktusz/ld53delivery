@@ -21,6 +21,7 @@ function inventory_draw()
     -- 4 pixels wide and 6 pixels high. 
     rectfill(cam.x, 105+cam.y, cam.x+9*4+2, 112+cam.y,7) -- outside 
     rectfill(1+cam.x, 106+cam.y, cam.x+9*4+1, 113+cam.y, 0) -- inside
+    print("inventory", 2+cam.x, 107+cam.y, 7) --text
 
     for item in all(inventory.items) do
         if item != nil then
@@ -28,7 +29,9 @@ function inventory_draw()
         end
     end
 
-    print("inventory", 2+cam.x, 107+cam.y, 7) --text
+    rectfill(cam.x+127-16, 105+cam.y, 127+cam.x, 112+cam.y,7) -- outside 
+    rectfill(cam.x+127-15, 106+cam.y, 126+cam.x, 112+cam.y,0) -- inside 
+    print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), 107+cam.y, 3)
 end
 
 function inventory_update()
