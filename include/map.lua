@@ -9,7 +9,16 @@ function get_objects_for_sprite_num(spriten,w,h,type)
             if (sprite_num == spriten) then
                 obj = {x=i*8,y=j*8,w=_w,h=_h,type=_type}
                 add(t, obj)
-                mset(i,j,20)
+                mset(i,j,21)
+                if _w==16 then
+                    mset(i+1,j,21)
+                end
+                if _h==16 then
+                    mset(i,j+1,21)
+                end
+                if _w==16 and _h==16 then
+                    mset(i+1,j+1,21)
+                end
             end
         end
     end
