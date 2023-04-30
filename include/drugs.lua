@@ -34,6 +34,10 @@ function drug_update(drug)
                         drug_sell(drug)
                     end
                 end
+
+                if mouse_in_area(player.x, player.y, player.w, player.h) then
+                    drug_use(drug)
+                end
             end
 
             drug.dragged = false
@@ -47,6 +51,11 @@ function drug_sell(drug)
     mouse.dragged = false
     drug = nil
     money+=10
+end
+
+function drug_use(drug)
+    inventory_remove_drug(drug)
+    money-=10
 end
 
 function drug_draw(drug)

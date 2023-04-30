@@ -25,7 +25,6 @@ function animation_update(animation)
 end
 
 function animation_draw(animation, x, y)
-    log(animation.frames[animation.current_frame].y)
     --sspr(animation.frames[animation.current_frame].x, animation.frames[animation.current_frame].y, animation.w, animation.h, x, y)
     sspr(animation.frames[animation.current_frame].x,animation.frames[animation.current_frame].y,animation.frames[animation.current_frame].w,animation.frames[animation.current_frame].h,x,y)
 end

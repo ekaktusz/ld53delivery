@@ -19,16 +19,16 @@ function inventory_draw()
     -- and 5 pixels tall, but the font includes a 1-pixel wide gap on the right, 
     -- and a 1-pixel-tall gap on the bottom, so the final size is actually 
     -- 4 pixels wide and 6 pixels high. 
-    rectfill(cam.x,106+cam.y,cam.x+9*4+1,112+cam.y,7) -- outside 
-    rectfill(1+cam.x,107+cam.y,cam.x+9*4,113+cam.y,0) -- inside
+    rectfill(cam.x, 105+cam.y, cam.x+9*4+2, 112+cam.y,7) -- outside 
+    rectfill(1+cam.x, 106+cam.y, cam.x+9*4+1, 113+cam.y, 0) -- inside
 
     for item in all(inventory.items) do
         if item != nil then
             drug_draw(item)
         end
     end
-    
-    print("inventory", 1+cam.x, 107+cam.y, 7) --text
+
+    print("inventory", 2+cam.x, 107+cam.y, 7) --text
 end
 
 function inventory_update()
