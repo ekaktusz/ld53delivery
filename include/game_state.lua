@@ -29,7 +29,7 @@ function game_state_update()
     
     transition_update(game_state.open_transition)
     
-    camera_set_position(player.x - 61, player.y - 61)
+    camera_set_position(player.x + player.w/2 - 64, player.y + player.h/2 - 64)
     inventory_update()
     mouse_update()
 
@@ -47,8 +47,17 @@ function game_state_draw()
     customers_draw()
     dealer_draw()
 
+    --top bar
     rectfill(cam.x,cam.y,cam.x+127,cam.y+8,7) -- outside
     rectfill(cam.x+1,cam.y+1,cam.x+126,cam.y+7,0) -- inside
+    
+    local time_size = 34
+    rectfill(cam.x+127-time_size,   cam.y+8,    cam.x+127,  cam.y+15,7) -- outside
+    rectfill(cam.x+127-time_size+1, cam.y+7,    cam.x+126,  cam.y+14,0) -- inside
+    print("01:27 am", cam.x+127-time_size +2, cam.y+7 +2,7)
+
+    print("energy:",cam.x+energy_bar.x-28, cam.y+energy_bar.y, 7)
+    print("anxiety:",cam.x+anxiety_bar.x-32, cam.y+2, 7)
 
     rect(cam.x,cam.y,127+cam.x,127+cam.y,7)--frame
 
@@ -58,8 +67,7 @@ function game_state_draw()
     bar_draw(anxiety_bar)
 
     --print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), cam.y+2, 3)
-    print("energy:",cam.x+energy_bar.x-28, cam.y+energy_bar.y, 7)
-    print("anxiety:",cam.x+anxiety_bar.x-32, cam.y+2, 7)
+    
 
     mouse_draw()
     transition_draw(game_state.open_transition)
