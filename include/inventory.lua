@@ -37,19 +37,16 @@ function inventory_update()
     inventory.x = cam.x
     inventory.y = cam.y + 112
 
-    
-
     for i=1,8,1 do
         local item = inventory.items[i]
         if item != nil then
             if item.dragged then
-                item.x = mouse.x
-                item.y = mouse.y
+                item.x = stat(32)+cam.x-1
+                item.y = stat(33)+cam.y-1
             else
                 item.x = inventory.x + (i-1) * item.w
                 item.y = inventory.y
             end
-            
             drug_update(item)
         end
     end

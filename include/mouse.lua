@@ -18,8 +18,8 @@ function mouse_draw()
 end
 
 function mouse_update()
-    mouse.x = stat(32)
-    mouse.y = stat(33)
+    mouse.x = stat(32)+cam.x-1
+    mouse.y = stat(33)+cam.y-1
     if stat(34)==1 then
         mouse.click = true
     else

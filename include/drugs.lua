@@ -13,12 +13,14 @@ end
 
 function drug_update(drug)
     if mouse_in_area(drug.x, drug.y, drug.w, drug.h) then
+        --print("??")
         mouse.triggered = true
         if mouse.click and not mouse.dragged then
             drug.dragged = true
             mouse.dragged = true
         else 
             drug.dragged = false
+            --mouse.dragged = false
         end
     end
 end
