@@ -2,7 +2,7 @@ player = {}
 
 function player_init()
     clear_table(player)
-    
+
     player = get_objects_for_sprite_num(2,16,16,"player")[1]
     player.dx = 0
     player.dy = 0
@@ -22,6 +22,8 @@ function player_init()
 
     local down_frames = { {x=64, y=96, w=16, h=16}, {x=64, y=112, w=16, h=16} }
     player.down_anim = animation_new(down_frames, 20)
+
+    player.hitbox_offset = 1
 end
 
 function player_draw()
@@ -64,11 +66,17 @@ function player_udpate()
         player.dy /= sqrt(2)
     end
 
-    if can_move(player.x+player.dx, player.y, player.w, player.h) then
+    if can_move(player.x+player.dx + player.hitbox_offset,
+                player.y+player.hitbox_offset,
+                player.w-player.hitbox_offset,
+                player.h-player.hitbox_offset) then
         player.x += player.dx
     end
 
-    if can_move(player.x, player.y+player.dy, player.w, player.h) then
+    if can_move(player.x+player.hitbox_offset, 
+                player.y+player.hitbox_offset+player.dy, 
+                player.w-player.hitbox_offset, 
+                player.h-player.hitbox_offset) then
         player.y += player.dy
     end
     
