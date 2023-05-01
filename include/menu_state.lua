@@ -45,7 +45,7 @@ function menu_state_draw()
     palt(12, true) -- beige color as transparency is true
     palt(0, false) -- black color as transparency is false
 
-    print("hellooo", 10, 20, 7)
+    print("hello\noo", 10, 20, 7) -- text, x, y, szín
     print("helloooooooo", 10, 30, 8)
     
     sspr(48, 0, 16, 16, 50, 50) --utso ketto a pozi
