@@ -22,7 +22,7 @@ function splash_state_init()
     splash_state.close_tran = transition_new(0.025, "close")
     splash_state.bgcolor = 0
     splash_state.fccolor = 7
-    splash_state.hdcolor = 3
+    splash_state.hdcolor = 4
     splash_state.mcolor = 8
 end
 
@@ -44,17 +44,17 @@ function splash_state_update()
             splash_state.hat_color = splash_state.timer1 * 10 % 14 + 3
             textColor = 2 + splash_state.timer1 * 10 % 14 + 3
         end
-        if splash_state.timer1 > 2 then
+        if splash_state.timer1 > 1.5 then
             splash_state.show_face = true
             splash_state.hat_color = 1
         end
-        if splash_state.timer1 > 3 then
+        if splash_state.timer1 > 2.5 then
             splash_state.blink = true
         end
-        if splash_state.timer1 > 3.5 then
+        if splash_state.timer1 > 3 then
             splash_state.blink = false
         end
-        if splash_state.timer1 > 4 then
+        if splash_state.timer1 > 3.5 then
             transition_start(splash_state.close_tran)
         end
     end
