@@ -15,13 +15,13 @@ function player_init()
     player.anxiety = 0.19
 
     local side_frames = { {x=16, y=0, w=16, h=16}, {x=64, y=0, w=16, h=16} }
-    player.side_anim = animation_new(side_frames, 20)
+    player.side_anim = animation_new(side_frames, 29)
 
     local up_frames = { {x=80, y=96, w=16, h=16}, {x=80, y=112, w=16, h=16} }
-    player.up_anim = animation_new(up_frames, 20)
+    player.up_anim = animation_new(up_frames, 29)
 
     local down_frames = { {x=64, y=96, w=16, h=16}, {x=64, y=112, w=16, h=16} }
-    player.down_anim = animation_new(down_frames, 20)
+    player.down_anim = animation_new(down_frames, 29)
 
     player.hitbox_offset = 1
 end

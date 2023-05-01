@@ -30,42 +30,42 @@ function customer_init(customer,_type)
     local _h = customer.h
     if _type == "turtle" then
         local frames = { {x=80, y=64, w=_w, h=_h}, {x=80, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "dj" then
         local frames = { {x=32, y=64, w=_w, h=_h}, {x=32, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "rabbit" then
         local frames = { {x=16, y=64, w=_w, h=_h}, {x=16, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "tiger" then
         local frames = { {x=96, y=64, w=_w, h=_h}, {x=96, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "snake" then
         local frames = { {x=112, y=64, w=_w, h=_h}, {x=112, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "horse" then
         local frames = { {x=32, y=96, w=_w, h=_h}, {x=32, y=112, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "monke" then
         local frames = { {x=16, y=96, w=_w, h=_h}, {x=16, y=112, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "chicken" then
         local frames = { {x=0, y=112, w=_w, h=_h}, {x=0, y=96, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "racoon" then
         local frames = { {x=96, y=96, w=_w, h=_h}, {x=96, y=112, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "crow" then
         local frames = { {x=0, y=64, w=_w, h=_h}, {x=0, y=80, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     elseif _type == "fox" then
         local frames = { {x=112, y=32, w=_w, h=_h}, {x=112, y=48, w=_w, h=_h} }
-        customer.animation = animation_new(frames, 20)
+        customer.animation = animation_new(frames, 29)
     end
 
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(100) 
+    customer.demand_time = rnd(200) * 60
     customer.high = false
 
     return customer
@@ -74,7 +74,7 @@ end
 function customer_reset_demand(customer)
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(100) * 60
+    customer.demand_time = 2400 + rnd(100) * 60
 end
 
 local function customer_update(customer)

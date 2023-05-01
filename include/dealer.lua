@@ -56,7 +56,7 @@ function dealer_init()
     end
 
     local frames = { {x=48, y=64, w=32, h=16}, {x=80, y=16, w=32, h=16} }
-    dealer.animation = animation_new(frames, 40)
+    dealer.animation = animation_new(frames, 58)
 end
 
 

@@ -28,7 +28,7 @@ function game_state_init()
         text = "00:00 am"
     }
     
-    money = 0
+    money = 30
     game_timer = 0
     passed_seconds = 0
     game_duration_seconds = 45 * 6
@@ -60,7 +60,7 @@ function game_state_update()
 
     if game_timer % 60 == 0 then
         passed_seconds += 1
-        player.energy -= 0.01
+        player.energy -= 0.007
         if passed_seconds >= game_duration_seconds then
             player.energy = 1
         end
@@ -120,6 +120,8 @@ function game_state_draw()
     rect(7*8,11*8,7*8,23*8,6)
     rect(45*8,11*8,45*8,23*8,6)
 
+    dealer_draw()
+
     --top bar
     rectfill(cam.x,cam.y,cam.x+127,cam.y+8,7) -- outside
     rectfill(cam.x+1,cam.y+1,cam.x+126,cam.y+7,0) -- inside
@@ -127,6 +129,7 @@ function game_state_draw()
     local time_size = 34
     local clock_x = cam.x+127-time_size
     local clock_y = cam.y+8
+
     rectfill(clock_x,  clock_y, clock_x+time_size,  clock_y + 7,7) -- outside
     rectfill(clock_x+1, clock_y-1, clock_x+time_size-1,  clock_y + 6, 0) -- inside
     print(in_game_time.text, clock_x +2, clock_y + 1,7)
@@ -136,7 +139,7 @@ function game_state_draw()
 
     rect(cam.x,cam.y,127+cam.x,127+cam.y,7)--frame
     
-    dealer_draw()
+    
 
     inventory_draw()
 

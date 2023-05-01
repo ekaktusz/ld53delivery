@@ -2,14 +2,11 @@ inventory = {}
 
 function inventory_init()
     clear_table(inventory)
-    inventory.items = {nil, drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), nil, nil, nil}
+    inventory.items = {drug_new("ecstasy"), drug_new("marijuana"), drug_new("marijuana"), nil, nil, nil, nil, nil}
     inventory.x = 0
     inventory.y = 0
     inventory.w = 127
     inventory.h = 15
-
-    local eki = drug_new("ecstasy")
-    inventory_add_drug(eki)
 end
 
 function inventory_draw()
