@@ -48,7 +48,7 @@ function menu_state_draw()
     palt(0, false) -- black color as transparency is false
 
     print("party-goers need refreshments\ndrag and drop orders to them!", 7, 20, 7) -- text, x, y, szín
-    print("let's face it: you're a dealer.\n  buy stuff from the panda !\n  the party ends at 6:00 am!", 5, 86, 7)
+    print("let's face it: you're a dealer.\n  buy stuff from the panda !\n  the party ends at 6:00 am!", 3, 86, 7)
     print("you can consume as well,\n  but don't overdose!", 19, 72, 10)
 
     print(" = -anxiety, -energy", 30, 38, 7)
