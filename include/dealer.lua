@@ -68,11 +68,24 @@ function dealer_update()
         button_update(dealer.buy_btn2)
         button_update(dealer.buy_btn3)
         button_update(dealer.close_btn)
+
+        pcenter = get_center(player.x,player.y,player.w,player.h)
+        dcenter = get_center(dealer.x,dealer.y,dealer.w,dealer.h)
+
+        if (get_distance(pcenter.x,pcenter.y,dcenter.x,dcenter.y) > 50) then
+            dealer.in_shop = false
+        end
     else
         if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) and not mouse.dragged then
             mouse.triggered = true
             if mouse.click then
-                dealer_enter_shop()
+
+                pcenter = get_center(player.x,player.y,player.w,player.h)
+                dcenter = get_center(dealer.x,dealer.y,dealer.w,dealer.h)
+        
+                if (get_distance(pcenter.x,pcenter.y,dcenter.x,dcenter.y) < 50) then
+                    dealer_enter_shop()
+                end
             end
         end
     end

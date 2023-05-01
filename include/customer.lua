@@ -52,8 +52,11 @@ function customer_init(customer,_type)
     elseif _type == "racoon" then
         local frames = { {x=96, y=96, w=_w, h=_h}, {x=96, y=112, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
-    elseif _type == "owl" then
-        local frames = { {x=112, y=96, w=_w, h=_h}, {x=112, y=112, w=_w, h=_h} }
+    elseif _type == "crow" then
+        local frames = { {x=0, y=64, w=_w, h=_h}, {x=0, y=80, w=_w, h=_h} }
+        customer.animation = animation_new(frames, 20)
+    elseif _type == "fox" then
+        local frames = { {x=112, y=32, w=_w, h=_h}, {x=112, y=48, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
     end
 
@@ -108,6 +111,8 @@ function customers_load()
     local chickens = get_objects_for_sprite_num(192,16,16,"chicken")
     local racoons = get_objects_for_sprite_num(204,16,16,"racoon")
     local owls = get_objects_for_sprite_num(206,16,16,"owl")
+    local crows = get_objects_for_sprite_num(128,16,16,"crow")
+    local foxs = get_objects_for_sprite_num(78,16,16,"fox")
 
 
     table_concat(customers, turtles)
@@ -120,6 +125,8 @@ function customers_load()
     table_concat(customers, chickens)
     table_concat(customers, racoons)
     table_concat(customers, owls)
+    table_concat(customers, crows)
+    table_concat(customers, foxs)
 end
 
 function customers_draw()
