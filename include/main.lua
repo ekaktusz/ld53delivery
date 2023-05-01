@@ -1,6 +1,6 @@
 function _init()
-    game_state_init()
-    --splash_state_init()
+    --game_state_init()
+    splash_state_init()
 end
 
 function _update60()
