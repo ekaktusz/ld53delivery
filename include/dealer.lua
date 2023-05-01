@@ -1,5 +1,11 @@
 dealer = {}
 
+local prices = {
+    cocaine = 54,
+    marijuana = 12,
+    ecstasy = 18
+}
+
 function dealer_init()
     clear_table(dealer)
 
@@ -23,8 +29,8 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if money>=12 then
-                    money-=12
+                if money>=prices.marijuana then
+                    money-=prices.marijuana
                     inventory_add_drug(drug_new("marijuana"))
                 end
             end
@@ -35,8 +41,8 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if money>=15 then
-                    money-=15
+                if money>=prices.ecstasy then
+                    money-=prices.ecstasy
                     inventory_add_drug(drug_new("ecstasy"))
                 end
             end
@@ -47,8 +53,8 @@ function dealer_init()
         --inventory_add_drug("marijuana")
         if not mouse.old_click and mouse.click then
             if not inventory_is_full() then
-                if money>=42 then
-                    money-=42
+                if money>=prices.cocaine then
+                    money-=prices.cocaine
                     inventory_add_drug(drug_new("cocaine"))
                 end
             end

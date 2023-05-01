@@ -65,7 +65,7 @@ function customer_init(customer,_type)
 
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(200) * 60
+    customer.demand_time = rnd(300) * 60
     customer.current_drug = nil
 
     return customer
@@ -74,7 +74,7 @@ end
 function customer_reset_demand(customer)
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = 2400 + rnd(100) * 60
+    customer.demand_time = 3600 + rnd(300) * 60
 end
 
 local function customer_update(customer)
