@@ -33,7 +33,6 @@ end
 
 function player_draw()
     --sspr(player.sprx,player.spry,player.w,player.h,player.x,player.y)
-    
     draw_parts(player_parts)
 
     if player.last_dir == "up" then
@@ -44,6 +43,10 @@ function player_draw()
         animation_draw(player.side_anim, player.x, player.y, player.last_dir == "right", false)
     end
 
+    
+end
+
+function player_draw_sniff()
     if player.just_drugged != nil then
         if player.just_drugged == "ecstasy" then
             sspr(64,32,16,16,player.x,player.y-16)
@@ -53,8 +56,6 @@ function player_draw()
             sspr(16,32,16,16,player.x,player.y-16)
         end
     end
-
-    
 end
 
 function player_udpate()

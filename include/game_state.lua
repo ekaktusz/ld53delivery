@@ -115,6 +115,7 @@ function game_state_draw()
     
     player_draw()
     customers_draw()
+    
     speakers_draw()
     customers_draw_demand()
     fences_draw_front()
@@ -122,6 +123,7 @@ function game_state_draw()
     rect(45*8,11*8,45*8,23*8,6)
 
     dealer_draw()
+    player_draw_sniff()
 
     --top bar
     rectfill(cam.x,cam.y,cam.x+127,cam.y+8,7) -- outside
