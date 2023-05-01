@@ -29,7 +29,7 @@ function drug_update(drug)
                     pcenter = get_center(player.x,player.y,player.w,player.h)
                     ccenter = get_center(customer.x,customer.y,customer.w,customer.h)
                     if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
-                    and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 110)
+                    --and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 110)
                      then
                         if (customer.demand == drug.type) then
                             drug_sell(drug)
