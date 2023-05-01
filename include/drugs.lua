@@ -49,6 +49,7 @@ function drug_update(drug)
                 end
                 if mouse_in_area(player.x, player.y, player.w, player.h) then
                     drug_use(drug)
+                    player.just_drugged = drug.type
                 end
             end
             if not mouse.click and mouse.old_click then
