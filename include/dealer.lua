@@ -121,9 +121,9 @@ local function dealer_draw_shop()
     print("molly", sx + flr(shop.w/3),  sy + offset_y + flr(shop.h/3),7)
     print("coke",  sx + flr(shop.w/3), sy + offset_y + flr(shop.h/3)*2,7)
 
-    print("$12", sx + flr(shop.w/3),  sy + offset_y + 8, 7)
-    print("$18", sx + flr(shop.w/3),  sy + offset_y + 8 + flr(shop.h/3),7)
-    print("$42",  sx + flr(shop.w/3), sy + offset_y + 8 + flr(shop.h/3)*2,7)
+    print("$"..prices.marijuana, sx + flr(shop.w/3),  sy + offset_y + 8, 7)
+    print("$"..prices.ecstasy, sx + flr(shop.w/3),  sy + offset_y + 8 + flr(shop.h/3),7)
+    print("$"..prices.cocaine,  sx + flr(shop.w/3), sy + offset_y + 8 + flr(shop.h/3)*2,7)
 
     button_draw(dealer.buy_btn1)
     button_draw(dealer.buy_btn2)
