@@ -12,6 +12,7 @@ function splash_state_init()
     _update60 = splash_state_update
     _draw = splash_state_draw
 
+    textColor = 7
     splash_state.angle = 0
     splash_state.show_hat = false
     splash_state.show_face = false
@@ -25,7 +26,7 @@ function splash_state_init()
 end
 
 function splash_state_update()
-    splash_state.angle += 0.02
+    splash_state.angle += 0.015
 
     if splash_state.angle > 1.015 then
         splash_state.angle = 1.015
@@ -33,20 +34,26 @@ function splash_state_update()
     end
 
     if splash_state.show_hat then
-        splash_state.timer1 += 0.025
+        splash_state.timer1 += 0.015
         if splash_state.timer1 > 1 then
-            splash_state.show_face = true
+            splash_state.show_face = false
             splash_state.hat_color = 1
+            textColor = 7
         else
             splash_state.hat_color = splash_state.timer1 * 10 % 14 + 3
-        end
-        if splash_state.timer1 > 1.5 then
-            splash_state.blink = true
+            textColor = 2 + splash_state.timer1 * 10 % 14 + 3
         end
         if splash_state.timer1 > 2 then
+            splash_state.show_face = true
+            splash_state.hat_color = 1
+        end
+        if splash_state.timer1 > 3 then
+            splash_state.blink = true
+        end
+        if splash_state.timer1 > 3.5 then
             splash_state.blink = false
         end
-        if splash_state.timer1 > 2.5 then
+        if splash_state.timer1 > 4 then
             transition_start(splash_state.close_tran)
         end
     end
@@ -89,7 +96,6 @@ function splash_state_draw()
 
     if splash_state.show_face then
         circfill(60,73,21,splash_state.hdcolor) --fej
-
         circfill(61,61,20,splash_state.hat_color) --sapi teteje
         rectfill(40, 66, 80, 75, splash_state.hdcolor)
         ovalfill(34,58,80,70,splash_state.hat_color) -- sapi ellenző
@@ -98,7 +104,6 @@ function splash_state_draw()
         circ(65, 6, 60, splash_state.hat_color+1) --varrás 1
         circ(80, 63, 30, splash_state.hat_color+1) --varrás 2
         circ(40, 63, 30, splash_state.hat_color+1) --varrás 3
-
         rectfill(0,0,38,60,splash_state.bgcolor) --takarás
         rectfill(0,0,128,40,splash_state.bgcolor8) --takarás
         rectfill(83,0,128,80,splash_state.bgcolor) --takarás
@@ -111,7 +116,6 @@ function splash_state_draw()
         rectfill(50,91,51,91,splash_state.hdcolor) --takarás
         rectfill(49,65,51,70,splash_state.hat_color) -- sapi cover up
         rectfill(69,67,71,69,splash_state.hat_color) -- sapi cover up
-
         ovalfill(46, 74, 74, 92, splash_state.mcolor) --száj ív 2
         ovalfill(46, 72, 74, 84, splash_state.hdcolor) --száj ív 1
         rectfill(45, 71, 76, 81, splash_state.hdcolor) -- takarás
@@ -127,8 +131,8 @@ function splash_state_draw()
         end
     end
 
-    print_angle('gerappa', 46, 50, 7, splash_state.angle) --0.015
-    print_angle('games!', 48, 56, 7, splash_state.angle)
+    print_angle('gerappa', 46, 50, textColor, splash_state.angle) --0.015
+    print_angle('games!', 48, 56, textColor, splash_state.angle)
 
     transition_draw(splash_state.close_tran)
 end
