@@ -32,11 +32,14 @@ function game_state_init()
     game_timer = 0
     passed_seconds = 0
     game_duration_seconds = 45 * 6
+    game_over = false
 
     music(1)
 end
 
 function game_state_update()
+    --if (game_over) return
+    
     game_timer += 1
     
     player_udpate()
@@ -71,19 +74,25 @@ function game_state_update()
         end
     end
 
-    if player.anxiety >= 1 then
+    if player.anxiety >= 1 and not game_over then
         -- TODO game over
-        game_state_init()
+        game_over = true
+        init_game_over_screen("anxiety")
     elseif player.anxiety <= 0 then
         player.anxiety = 0
     end
 
 
-    if player.energy <= 0 then
+    if player.energy <= 0 and not game_over then
         -- TODO game over
-        game_state_init()
+        game_over = true
+        init_game_over_screen("energy")
     elseif player.energy >= 1 then
         player.energy = 1
+    end
+
+    if game_over then
+        update_game_over_screen()
     end
 
     bar_update(energy_bar, player.energy)
@@ -138,6 +147,11 @@ function game_state_draw()
     --print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), cam.y+2, 3)
     
 
+    if game_over then   
+        draw_game_over_screen()
+    end
+
     mouse_draw()
+
     transition_draw(game_state.open_transition)
 end

@@ -14,7 +14,7 @@ function player_init()
     player.energy = 0.7
     player.anxiety = 0.19
 
-    local side_frames = { {x=16, y=0, w=16, h=16}, {x=16, y=16, w=16, h=16} }
+    local side_frames = { {x=16, y=0, w=16, h=16}, {x=64, y=0, w=16, h=16} }
     player.side_anim = animation_new(side_frames, 20)
 
     local up_frames = { {x=80, y=96, w=16, h=16}, {x=80, y=112, w=16, h=16} }

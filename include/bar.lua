@@ -14,7 +14,9 @@ end
 function bar_draw(bar)
     rectfill(bar.x+cam.x, bar.y+cam.y, bar.x+bar.w+cam.x, bar.y+bar.h+cam.y, bar.c1)
     rectfill(bar.x+1+cam.x, bar.y+1+cam.y, bar.x+bar.w+cam.x-1, bar.y+bar.h+cam.y-1, 0)
-    rectfill(bar.x+1+cam.x, bar.y+1+cam.y, bar.x+flr(bar.w*bar.prog)+cam.x-1, bar.y+bar.h+cam.y-1, bar.c2)
+    if bar.prog >= 0.01 then
+        rectfill(bar.x+1+cam.x, bar.y+1+cam.y, mid(bar.x+1+cam.x, bar.x+flr(bar.w*bar.prog)+cam.x-1, bar.x+bar.w+cam.x-1), bar.y+bar.h+cam.y-1, bar.c2)
+    end
 end
 
 function bar_update(bar, progress)
