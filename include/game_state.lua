@@ -94,12 +94,16 @@ function game_state_draw()
     cls(0)
     --map(0, 0, 0, 16)
     map(0,0)
+
+    fences_draw_back()
     
     player_draw()
     customers_draw()
     dealer_draw()
     speakers_draw()
-    fences_draw()
+    fences_draw_front()
+    rect(7*8,11*8,7*8,23*8,6)
+    rect(45*8,11*8,45*8,23*8,6)
 
     --top bar
     rectfill(cam.x,cam.y,cam.x+127,cam.y+8,7) -- outside
@@ -119,10 +123,9 @@ function game_state_draw()
 
     inventory_draw()
 
-    rect(7*8,11*8,7*8,23*8)
-    rect(45*8,11*8,45*8,23*8)
+    
 
-    hitboxes_draw()
+    --hitboxes_draw()
 
     --rectfill(7*8,16*8,45*8,24*8,3) -- outside
 

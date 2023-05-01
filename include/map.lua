@@ -12,7 +12,8 @@ function get_objects_for_sprite_num(spriten,w,h,type)
                     y = j*8,
                     w = _w,
                     h = _h,
-                    type = _type
+                    type = _type,
+                    spr = spriten
                 }
                 add(t, obj)
                 if _type == "player" then
