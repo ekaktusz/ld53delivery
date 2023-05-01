@@ -92,7 +92,7 @@ function game_state_update()
     if player.energy <= 0 and not game_over then
         -- TODO game over
         game_over = true
-        init_game_over_screen("yourwinner")
+        init_game_over_screen("energy")
     elseif player.energy >= 1 then
         player.energy = 1
     end
