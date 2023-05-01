@@ -40,7 +40,6 @@ function drug_update(drug)
                         end
                     end
                 end
-
                 if mouse_in_area(player.x, player.y, player.w, player.h) then
                     drug_use(drug)
                 end
@@ -80,7 +79,7 @@ function drug_use(drug)
         player.anxiety += 0.2
     elseif (drug.type == "cocaine") then 
         player.energy = 0.7
-        player.anxiery = 0.19
+        player.anxiety = 0.19
     end
 
     inventory_remove_drug(drug)

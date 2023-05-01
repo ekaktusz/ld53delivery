@@ -62,7 +62,7 @@ function game_state_update()
         passed_seconds += 1
         player.energy -= 0.008
         if passed_seconds >= game_duration_seconds then
-            player.energy = 1
+            init_game_over_screen("yourwinner")
         end
     end
 
@@ -114,8 +114,8 @@ function game_state_draw()
     
     player_draw()
     customers_draw()
-    customers_draw_demand()
     speakers_draw()
+    customers_draw_demand()
     fences_draw_front()
     rect(7*8,11*8,7*8,23*8,6)
     rect(45*8,11*8,45*8,23*8,6)

@@ -36,6 +36,8 @@ function draw_game_over_screen()
         print("  too much anxiety", game_over_screen.x+offsetx,game_over_screen.y+offsety, 8)
     elseif game_over_screen.reason == "energy" then
         print("low energy killed you", game_over_screen.x+offsetx,game_over_screen.y+offsety, 8)
+    elseif game_over_screen.reason == "yourwinner" then
+        print("xddddd", game_over_screen.x+offsetx,game_over_screen.y+offsety, 8)
     end
 
     button_draw(game_over_screen.reset_btn)
