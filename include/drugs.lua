@@ -44,12 +44,14 @@ function drug_update(drug)
                             end
                             customer.just_drugged = drug.type
                             customer_reset_demand(customer)
+                            return
                         end
                     end
                 end
                 if mouse_in_area(player.x, player.y, player.w, player.h) then
                     drug_use(drug)
                     player.just_drugged = drug.type
+                    return
                 end
             end
             if not mouse.click and mouse.old_click then
