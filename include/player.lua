@@ -7,7 +7,7 @@ function player_init()
     player.dx = 0
     player.dy = 0
 
-    player.last_dir = "down"
+    player.last_dir = "left"
 
     player.acc = 0.75
 
