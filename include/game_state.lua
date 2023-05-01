@@ -12,6 +12,7 @@ function game_state_init()
     inventory_init()
     customers_load()
     dealer_init()
+    speakers_init()
 
     energy_bar = bar_new(30, 2, 30, 4,7,8)
     anxiety_bar = bar_new(95, 2, 30, 4,7,12)
@@ -37,6 +38,7 @@ function game_state_update()
     player_udpate()
     customers_update()
     dealer_update()
+    speakers_update()
     
     transition_update(game_state.open_transition)
     
@@ -92,6 +94,7 @@ function game_state_draw()
     player_draw()
     customers_draw()
     dealer_draw()
+    speakers_draw()
 
     --top bar
     rectfill(cam.x,cam.y,cam.x+127,cam.y+8,7) -- outside

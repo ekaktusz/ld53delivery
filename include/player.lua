@@ -1,10 +1,7 @@
 player = {}
 
 function player_init()
-    player.x = 30
-    player.y = 30
-    player.w =  16
-    player.h = 16
+    player = get_objects_for_sprite_num(2,16,16,"player")[1]
     player.dx = 0
     player.dy = 0
 

@@ -9,15 +9,16 @@ function get_objects_for_sprite_num(spriten,w,h,type)
             if (sprite_num == spriten) then
                 obj = customer_new(i*8,j*8,_w,_h,_type)
                 add(t, obj)
-                mset(i,j,21)
-                if _w==16 then
-                    mset(i+1,j,21)
-                end
-                if _h==16 then
-                    mset(i,j+1,21)
-                end
-                if _w==16 and _h==16 then
-                    mset(i+1,j+1,21)
+                if _type == "player" then
+                    mset(i,j,20)
+                elseif _type == "speaker" then
+                    if j > 5 then
+                        mset(i,j,68)
+                    else
+                        mset(i,j,102)
+                    end
+                else
+                    mset(i,j,36)
                 end
             end
         end
