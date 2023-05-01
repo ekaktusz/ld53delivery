@@ -27,7 +27,11 @@ function get_objects_for_sprite_num(spriten,w,h,type)
                     customer_init(obj, _type)
                     mset(i,j,68)
                 elseif _type == "fences" then
-                    mset(i,j,36)
+                    if j > 12 then
+                        mset(i,j,20)
+                    else
+                        mset(i,j,36)
+                    end
                 elseif _type == "dealer" then
                     mset(i,j,38)
                     mset(i+1,j,39)

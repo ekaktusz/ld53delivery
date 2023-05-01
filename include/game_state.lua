@@ -119,6 +119,13 @@ function game_state_draw()
 
     inventory_draw()
 
+    rect(7*8,11*8,7*8,23*8)
+    rect(45*8,11*8,45*8,23*8)
+
+    hitboxes_draw()
+
+    --rectfill(7*8,16*8,45*8,24*8,3) -- outside
+
     bar_draw(energy_bar)
     bar_draw(anxiety_bar)
 
