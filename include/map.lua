@@ -7,7 +7,13 @@ function get_objects_for_sprite_num(spriten,w,h,type)
         for j=0,31,1 do
             local sprite_num = mget(i,j)
             if (sprite_num == spriten) then
-                obj = customer_new(i*8,j*8,_w,_h,_type)
+                obj = {
+                    x = i*8,
+                    y = j*8,
+                    w = _w,
+                    h = _h,
+                    type = _type
+                }
                 add(t, obj)
                 if _type == "player" then
                     mset(i,j,20)
@@ -18,8 +24,12 @@ function get_objects_for_sprite_num(spriten,w,h,type)
                         mset(i,j,102)
                     end
                 elseif _type == "dj" then
+                    customer_init(obj, _type)
                     mset(i,j,68)
+                elseif _type == "fences" or _type == "dealer" then
+                    mset(i,j,36)
                 else
+                    obj = customer_init(obj, _type)
                     mset(i,j,36)
                 end
             end

@@ -1,20 +1,20 @@
 customers = {}
 
+local demand_types = {"marijuana", "ecstasy", "cocaine"}
+
 local function table_concat(t1,t2) --feltetelezzuk hogy object
     for i=1,#t2 do
-        t1[#t1+1] = {x=t2[i].x, y=t2[i].y, w=t2[i].w, h=t2[i].h, type=t2[i].type, animation=t2[i].animation}
+        --t1[#t1+1] = {x=t2[i].x, y=t2[i].y, w=t2[i].w, h=t2[i].h, type=t2[i].type, animation=t2[i].animation}
+        for key, value in pairs(t2) do
+            t1[key] = value
+        end
     end
     return t1
 end
 
-function customer_new(_x,_y,_w,_h,_type)
-    local customer = {
-        x = _x, 
-        y = _y,
-        w = _w,
-        h = _h,
-        type = _type
-    }
+function customer_init(customer,_type)
+    local _w = customer.w
+    local _h = customer.h
     if _type == "turtle" then
         local frames = { {x=80, y=64, w=_w, h=_h}, {x=80, y=80, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
@@ -46,19 +46,37 @@ function customer_new(_x,_y,_w,_h,_type)
         local frames = { {x=112, y=96, w=_w, h=_h}, {x=112, y=112, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
     end
-    
+
+    customer.demand = nil
+    customer.demand_timer = 0
+    customer.demand_time = rnd(100) * 60
+
     return customer
 end
 
 local function customer_update(customer)
     animation_update(customer.animation)
+    
+    --w when dont have demand
+    if customer.demand == nil then
+        customer.demand_timer += 1
+        if customer.demand_timer >= customer.demand_time then
+            -- TODO létrejön a demand
+            customer.demand = demand_types[flr(rnd(#demand_types))+1]
+        end
+    end
 end
 
 local function customer_draw(customer)
-    --if customer.type == "snail" then
-    --    sspr(64,0,customer.w,customer.h,customer.x,customer.y)
-    --end
     animation_draw(customer.animation, customer.x, customer.y)
+
+    if customer.demand == "marijuana" then
+        sspr(48, 0, 16, 16, customer.x, customer.y-16)
+    elseif customer.demand == "ecstasy" then
+        sspr(96, 0, 16, 16, customer.x, customer.y-16)
+    elseif customer.demand == "cocaine" then
+        sspr(80, 0, 16, 16, customer.x, customer.y-16)
+    end
 end
 
 function customers_load()
