@@ -33,6 +33,9 @@ end
 
 function player_draw()
     --sspr(player.sprx,player.spry,player.w,player.h,player.x,player.y)
+    
+    draw_parts(player_parts)
+
     if player.last_dir == "up" then
         animation_draw(player.up_anim, player.x, player.y, false, false)
     elseif player.last_dir == "down" then
@@ -50,6 +53,7 @@ function player_draw()
             sspr(16,32,16,16,player.x,player.y-16)
         end
     end
+
     
 end
 
@@ -57,6 +61,8 @@ function player_udpate()
     animation_update(player.side_anim)
     animation_update(player.up_anim)
     animation_update(player.down_anim)
+
+    
 
     if player.just_drugged != nil then
         player.just_drugged_timer += 1
@@ -102,6 +108,32 @@ function player_udpate()
                 player.h-player.hitbox_offset) then
         player.y += player.dy
     end
+
+    if player.dy != 0 then
+        spawn_trail(player.x + player.w/2, --x 
+                    player.y + player.h/2,  --y
+                    4, --sx
+                    4,  --sy
+                    11, --color
+                    8,  --oldcolor
+                    1,  -- intensity
+                    player_parts, -- parts
+                    80, --min age
+                    100) --max age
+    elseif player.dx != 0 then
+        spawn_trail(player.x + player.w/2, --x 
+                    player.y + player.h -2,  --y
+                    2, --sx
+                    2,  --sy
+                    11, --color
+                    8,  --oldcolor
+                    1,  -- intensity
+                    player_parts, -- parts
+                    80, --min age
+                    100) --max age
+    end
+
+    update_parts(player_parts)
     
     player.dx = 0
     player.dy = 0
