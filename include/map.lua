@@ -31,6 +31,10 @@ function get_objects_for_sprite_num(spriten,w,h,type)
                 else
                     obj = customer_init(obj, _type)
                     mset(i,j,36)
+                    --mset(i,j,38)
+                    --mset(i+1,j,39)
+                    mset(i,j+1,54)
+                    mset(i+1,j+1,55)
                 end
             end
         end
