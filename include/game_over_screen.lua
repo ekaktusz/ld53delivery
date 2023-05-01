@@ -28,7 +28,9 @@ function init_game_over_screen(_reason)
                                             8, -- height
                                             " retry") --text
     game_over_screen.reset_btn.on_click = function()
-        game_state_init()
+        if not mouse.old_click and mouse.click then
+            game_state_init()
+        end
     end
 end
 

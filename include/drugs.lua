@@ -42,6 +42,7 @@ function drug_update(drug)
                             elseif drug.type == "ecstasy" then
                                 customer.animation.dt /= 2 
                             end
+                            customer.just_drugged = drug.type
                             customer_reset_demand(customer)
                         end
                     end
