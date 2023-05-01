@@ -29,7 +29,7 @@ function drug_update(drug)
                     pcenter = get_center(player.x,player.y,player.w,player.h)
                     ccenter = get_center(customer.x,customer.y,customer.w,customer.h)
                     if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
-                    and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 110)
+                    --and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 110)
                      then
                         if (customer.demand == drug.type) then
                             drug_sell(drug)
@@ -42,12 +42,14 @@ function drug_update(drug)
                             elseif drug.type == "ecstasy" then
                                 customer.animation.dt /= 2 
                             end
+                            customer.just_drugged = drug.type
                             customer_reset_demand(customer)
                         end
                     end
                 end
                 if mouse_in_area(player.x, player.y, player.w, player.h) then
                     drug_use(drug)
+                    player.just_drugged = drug.type
                 end
             end
             if not mouse.click and mouse.old_click then

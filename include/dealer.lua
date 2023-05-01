@@ -23,7 +23,9 @@ function dealer_init()
     dealer.buy_btn3 = button_new(shop.x + flr(shop.w/3)*2, shop.y+flr(shop.h/3)*2 + 3, flr(shop.w/3)-1, 12, "buy")
     dealer.close_btn = button_new(shop.x + shop.w - 6, shop.y -8, 6, 8, "x", 9, 8, 0, 9)
     dealer.close_btn.on_click = function()
-        dealer.in_shop = false
+        if not mouse.old_click and mouse.click then
+            dealer.in_shop = false
+        end
     end
     dealer.buy_btn1.on_click = function()
         --inventory_add_drug("marijuana")
@@ -84,7 +86,7 @@ function dealer_update()
     else
         if mouse_in_area(dealer.x, dealer.y, dealer.w, dealer.h) and not mouse.dragged then
             mouse.triggered = true
-            if mouse.click then
+            if not mouse.old_click and mouse.click then
 
                 pcenter = get_center(player.x,player.y,player.w,player.h)
                 dcenter = get_center(dealer.x,dealer.y,dealer.w,dealer.h)

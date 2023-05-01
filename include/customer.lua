@@ -16,11 +16,11 @@ local function table_concat(t1,t2) --feltetelezzuk hogy object
             demand = t2[i].demand,
             demand_timer = t2[i].demand_timer,
             demand_time = t2[i].demand_time,
-            current_drug = t2[i].current_drug
+            current_drug = t2[i].current_drug,
+            just_drugged = t2[i].just_drugged,
+            just_drugged_timer = t2[i].just_drugged_timer,
+            just_drugged_time = t2[i].just_drugged_time
         }
-        --for key, value in pairs(t2) do
-        --    t1[key] = value
-        --end
     end
     return t1
 end
@@ -68,6 +68,10 @@ function customer_init(customer,_type)
     customer.demand_time = rnd(200) * 60
     customer.current_drug = nil
 
+    customer.just_drugged = nil
+    customer.just_drugged_timer = 0
+    customer.just_drugged_time = 60
+
     return customer
 end
 
@@ -88,6 +92,14 @@ local function customer_update(customer)
         if customer.demand_timer >= customer.demand_time then
             -- TODO létrejön a demand
             customer.demand = demand_types[flr(rnd(#demand_types))+1]
+        end
+    end
+
+    if customer.just_drugged != nil then
+        customer.just_drugged_timer += 1
+        if customer.just_drugged_timer >= customer.just_drugged_time then
+            customer.just_drugged_timer = 0
+            customer.just_drugged = nil
         end
     end
 end
@@ -115,6 +127,16 @@ local function customer_draw_demand(customer)
             sspr(96, 0, 16, 16, customer.x, customer.y-16)
         elseif customer.demand == "cocaine" then
             sspr(80, 0, 16, 16, customer.x, customer.y-16)
+        end
+    end
+
+    if customer.just_drugged != nil then
+        if customer.just_drugged == "ecstasy" then
+            sspr(64,32,16,16,customer.x,customer.y-16)
+        elseif customer.just_drugged == "marijuana" then
+            sspr(16,48,16,16,customer.x,customer.y-16)
+        else --cocaine
+            sspr(16,32,16,16,customer.x,customer.y-16)
         end
     end
 end

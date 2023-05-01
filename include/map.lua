@@ -5,7 +5,7 @@ function is_on_dance_floor(x,y)
     return x > dance_floor.x1 and x < dance_floor.x2 and y > dance_floor.y1 and y < dance_floor.y2
 end 
 
-local bathroom = {x1=49*8, y1=24*8, x2=57*8, y2= 30*8}
+local bathroom = {x1=49*8-2, y1=24*8, x2=57*8, y2= 30*8}
 function is_on_bathroom(x, y) 
     return x > bathroom.x1 and x < bathroom.x2 and y > bathroom.y1 and y < bathroom.y2
 end

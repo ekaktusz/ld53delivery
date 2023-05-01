@@ -7,7 +7,7 @@ function player_init()
     player.dx = 0
     player.dy = 0
 
-    player.last_dir = "down"
+    player.last_dir = "left"
 
     player.acc = 0.75
 
@@ -23,6 +23,11 @@ function player_init()
     local down_frames = { {x=64, y=96, w=16, h=16}, {x=64, y=112, w=16, h=16} }
     player.down_anim = animation_new(down_frames, 29)
 
+    
+    player.just_drugged = nil
+    player.just_drugged_timer = 0
+    player.just_drugged_time = 60
+
     player.hitbox_offset = 1
 end
 
@@ -35,6 +40,16 @@ function player_draw()
     else
         animation_draw(player.side_anim, player.x, player.y, player.last_dir == "right", false)
     end
+
+    if player.just_drugged != nil then
+        if player.just_drugged == "ecstasy" then
+            sspr(64,32,16,16,player.x,player.y-16)
+        elseif player.just_drugged == "marijuana" then
+            sspr(16,48,16,16,player.x,player.y-16)
+        else --cocaine
+            sspr(16,32,16,16,player.x,player.y-16)
+        end
+    end
     
 end
 
@@ -42,6 +57,14 @@ function player_udpate()
     animation_update(player.side_anim)
     animation_update(player.up_anim)
     animation_update(player.down_anim)
+
+    if player.just_drugged != nil then
+        player.just_drugged_timer += 1
+        if player.just_drugged_timer >= player.just_drugged_time then
+            player.just_drugged_timer = 0
+            player.just_drugged = nil
+        end
+    end
 
     -- ⬆️, ⬇️, ⬅️, ➡️, 🅾️, and ❎
     if btn(⬅️) then

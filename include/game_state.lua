@@ -62,6 +62,7 @@ function game_state_update()
         passed_seconds += 1
         player.energy -= 0.008
         if passed_seconds >= game_duration_seconds then
+            game_over = true
             init_game_over_screen("yourwinner")
         end
     end
@@ -73,9 +74,9 @@ function game_state_update()
             in_game_time.minutes = 0
         end
         if in_game_time.minutes < 10 then
-            in_game_time.text = "0"..in_game_time.hours..":".."0"..in_game_time.minutes.." AM"
+            in_game_time.text = "0"..in_game_time.hours..":".."0"..in_game_time.minutes.." am"
         else
-            in_game_time.text = "0"..in_game_time.hours..":"..in_game_time.minutes.." AM"
+            in_game_time.text = "0"..in_game_time.hours..":"..in_game_time.minutes.." am"
         end
     end
 
