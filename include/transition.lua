@@ -65,7 +65,7 @@ local function draw_transition(t)
             --the circles' radii are
             --influenced by the other
             --sweepy number
-            circfill(x, y, osc2*17, 7)
+            circfill(cam.x+x, cam.y+y, osc2*17, 7)
         end
     end
 end
