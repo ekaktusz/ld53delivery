@@ -4,7 +4,6 @@ function dealer_init()
     clear_table(dealer)
 
     dealer = get_objects_for_sprite_num(134,32,16,"dealer")[1]
-
     --shop
     shop = {
         x = 32,
@@ -55,10 +54,15 @@ function dealer_init()
             end
         end
     end
+
+    local frames = { {x=48, y=64, w=32, h=16}, {x=80, y=16, w=32, h=16} }
+    dealer.animation = animation_new(frames, 40)
 end
 
 
 function dealer_update()
+    animation_update(dealer.animation)
+
     if dealer.in_shop then
         button_update(dealer.buy_btn1)
         button_update(dealer.buy_btn2)
@@ -109,8 +113,8 @@ local function dealer_draw_shop()
 end
 
 function dealer_draw()
-    --animation_draw(dealer.animation, dealer.x, dealer.y)
-    sspr(48,64,dealer.w,dealer.h,dealer.x,dealer.y)
+    animation_draw(dealer.animation, dealer.x, dealer.y)
+    --sspr(48,64,dealer.w,dealer.h,dealer.x,dealer.y)
 
     if dealer.in_shop then
         dealer_draw_shop()
