@@ -60,7 +60,7 @@ function game_state_update()
 
     if game_timer % 60 == 0 then
         passed_seconds += 1
-        player.energy -= 0.007
+        player.energy -= 0.008
         if passed_seconds >= game_duration_seconds then
             player.energy = 1
         end
