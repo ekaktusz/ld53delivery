@@ -15,11 +15,14 @@ function init_game_over_screen(_reason)
     }
 
     retrybutton_posy = game_over_screen.y-cam.y+ 35
+    music(-1)
 
     if _reason == "yourwinner" then
         game_over_screen.y = 20 + cam.y
         game_over_screen.sy = 80
         retrybutton_posy = game_over_screen.y-cam.y+ 65
+    else
+        sfx(30)
     end
 
     game_over_screen.reset_btn = button_new(game_over_screen.x-cam.x+ 29, --x coord

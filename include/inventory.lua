@@ -55,6 +55,7 @@ function inventory_add_drug(drug)
         if item == nil then
             --add(inventory.items,drug,i)
             inventory.items[i] = drug
+            sfx(33)
             return
         end
     end

@@ -10,11 +10,12 @@ function drug_new(_type)
     }
     return drug
 end
-
+local drag_offset = 5
+local lenti_drag_offset = 2
 function drug_update(drug)
     if drug.dragged then
-        drug.x = stat(32)+cam.x-1
-        drug.y = stat(33)+cam.y-1
+        drug.x = stat(32)+cam.x-1 -4
+        drug.y = stat(33)+cam.y-1 -6
     end
 
     if mouse_in_area(drug.x, drug.y, drug.w, drug.h) then
@@ -28,7 +29,7 @@ function drug_update(drug)
                 for customer in all(customers) do
                     pcenter = get_center(player.x,player.y,player.w,player.h)
                     ccenter = get_center(customer.x,customer.y,customer.w,customer.h)
-                    if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
+                    if mouse_in_area(customer.x-drag_offset, customer.y-drag_offset, customer.w+lenti_drag_offset+drag_offset, customer.h+lenti_drag_offset+drag_offset)
                     --and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 110)
                      then
                         if (customer.demand == drug.type) then
@@ -48,7 +49,7 @@ function drug_update(drug)
                         end
                     end
                 end
-                if mouse_in_area(player.x, player.y, player.w, player.h) then
+                if mouse_in_area(player.x-drag_offset, player.y-drag_offset, player.w+lenti_drag_offset+drag_offset, player.h+lenti_drag_offset+drag_offset) then
                     drug_use(drug)
                     player.just_drugged = drug.type
                     return
@@ -67,12 +68,15 @@ function drug_sell(drug)
     
     if (drug.type == "marijuana") then 
         money+=20
+        sfx(36)
     elseif (drug.type == "ecstasy") then 
         money+=30
+        sfx(32)
     elseif (drug.type == "cocaine") then 
         money+=100
+        sfx(35)
     end
-    
+    --sfx(34)
     inventory_remove_drug(drug)
     drug = nil
     player.anxiety += 0.1
@@ -84,12 +88,15 @@ function drug_use(drug)
     if (drug.type == "marijuana") then 
         player.anxiety -= 0.5
         player.energy -= 0.3
+        sfx(36)
     elseif (drug.type == "ecstasy") then 
         player.energy += 0.5
         player.anxiety += 0.2
+        sfx(32)
     elseif (drug.type == "cocaine") then 
         player.energy = 0.7
         player.anxiety = 0.19
+        sfx(35)
     end
 
     inventory_remove_drug(drug)
