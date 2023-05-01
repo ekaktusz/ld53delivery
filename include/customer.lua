@@ -16,7 +16,7 @@ local function table_concat(t1,t2) --feltetelezzuk hogy object
             demand = t2[i].demand,
             demand_timer = t2[i].demand_timer,
             demand_time = t2[i].demand_time,
-            high = t2[i].high
+            current_drug = t2[i].current_drug
         }
         --for key, value in pairs(t2) do
         --    t1[key] = value
@@ -66,7 +66,7 @@ function customer_init(customer,_type)
     customer.demand = nil
     customer.demand_timer = 0
     customer.demand_time = rnd(200) * 60
-    customer.high = false
+    customer.current_drug = nil
 
     return customer
 end
@@ -94,8 +94,10 @@ end
 
 local function customer_draw(customer)
     if customer.type == "owl" then
-        if customer.high then
+        if customer.current_drug == "ecstasy" then
             sspr(112,112,16,16,customer.x,customer.y)
+        elseif customer.current_drug == "marijuana" then
+            sspr(64,16,16,16,customer.x,customer.y)
         else
             sspr(112,96,16,16,customer.x,customer.y)
         end

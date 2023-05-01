@@ -34,8 +34,12 @@ function drug_update(drug)
                         if (customer.demand == drug.type) then
                             drug_sell(drug)
                             if customer.type == "owl" then
-                                customer.high = true
-                            elseif (drug.type == "ecstasy") then
+                                if drug.type == "ecstasy" then
+                                    customer.current_drug = "ecstasy"
+                                elseif drug.type == "marijuana" then
+                                    customer.current_drug = "marijuana"
+                                end
+                            elseif drug.type == "ecstasy" then
                                 customer.animation.dt /= 2 
                             end
                             customer_reset_demand(customer)
