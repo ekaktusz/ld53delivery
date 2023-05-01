@@ -32,6 +32,8 @@ function game_state_init()
     game_timer = 0
     passed_seconds = 0
     game_duration_seconds = 45 * 6
+
+    music(1)
 end
 
 function game_state_update()
