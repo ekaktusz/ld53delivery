@@ -24,6 +24,7 @@ __lua__
 #include include/speakers.lua
 #include include/fences.lua
 #include include/game_over_screen.lua
+#include include/particles.lua
 __gfx__
 c1ccccccc111cccccccccccccccccccc5555555566666666cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc5555555555555555
 171cccccc171ccccccc0cc0ccccccccc5666666d000000d0ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccdd6dd6d66dd6d6d6
