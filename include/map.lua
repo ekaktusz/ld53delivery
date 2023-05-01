@@ -17,6 +17,8 @@ function get_objects_for_sprite_num(spriten,w,h,type)
                     else
                         mset(i,j,102)
                     end
+                elseif _type == "dj" then
+                    mset(i,j,68)
                 else
                     mset(i,j,36)
                 end

@@ -18,6 +18,9 @@ function customer_new(_x,_y,_w,_h,_type)
     if _type == "snail" then
         local frames = { {x=64, y=0, w=_w, h=_h}, {x=64, y=16, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
+    elseif _type == "dj" then
+        local frames = { {x=32, y=64, w=_w, h=_h}, {x=32, y=80, w=_w, h=_h} }
+        customer.animation = animation_new(frames, 20)
     end
     return customer
 end
@@ -35,7 +38,9 @@ end
 
 function customers_load()
     local snails = get_objects_for_sprite_num(8,16,16,"snail")
+    local dj = get_objects_for_sprite_num(132,16,16,"dj")
     table_concat(customers, snails)
+    table_concat(customers, dj)
 end
 
 function customers_draw()
