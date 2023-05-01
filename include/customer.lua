@@ -4,10 +4,20 @@ local demand_types = {"marijuana", "ecstasy", "cocaine"}
 
 local function table_concat(t1,t2) --feltetelezzuk hogy object
     for i=1,#t2 do
-        --t1[#t1+1] = {x=t2[i].x, y=t2[i].y, w=t2[i].w, h=t2[i].h, type=t2[i].type, animation=t2[i].animation}
-        for key, value in pairs(t2) do
-            t1[key] = value
-        end
+        t1[#t1+1] = {
+            x=t2[i].x, 
+            y=t2[i].y, 
+            w=t2[i].w, 
+            h=t2[i].h, 
+            type=t2[i].type, 
+            animation=t2[i].animation,
+            demand = t2[i].demand,
+            demand_timer = t2[i].demand_timer,
+            demand_time = t2[i].demand_time
+        }
+        --for key, value in pairs(t2) do
+        --    t1[key] = value
+        --end
     end
     return t1
 end
@@ -54,6 +64,12 @@ function customer_init(customer,_type)
     return customer
 end
 
+function customer_reset_demand(customer)
+    customer.demand = nil
+    customer.demand_timer = 0
+    customer.demand_time = rnd(100) * 60
+end
+
 local function customer_update(customer)
     animation_update(customer.animation)
     
@@ -80,6 +96,8 @@ local function customer_draw(customer)
 end
 
 function customers_load()
+    clear_table(customers)
+
     local turtles = get_objects_for_sprite_num(138,16,16,"turtle")
     local dj = get_objects_for_sprite_num(132,16,16,"dj")
     local rabbits = get_objects_for_sprite_num(130,16,16,"rabbit")

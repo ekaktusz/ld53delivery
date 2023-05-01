@@ -31,7 +31,10 @@ function drug_update(drug)
                     if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
                     and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 50)
                      then
-                        drug_sell(drug)
+                        if (customer.demand == drug.type) then
+                            drug_sell(drug)
+                            customer_reset_demand(customer)
+                        end
                     end
                 end
 

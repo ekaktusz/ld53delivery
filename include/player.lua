@@ -1,6 +1,8 @@
 player = {}
 
 function player_init()
+    clear_table(player)
+    
     player = get_objects_for_sprite_num(2,16,16,"player")[1]
     player.dx = 0
     player.dy = 0

@@ -1,6 +1,7 @@
 local game_state = {}
 
-function game_state_init()    
+function game_state_init()
+    clear_table(game_state)
     reload(0x1000, 0x1000, 0x2000)
     _update60 = game_state_update
     _draw = game_state_draw

@@ -9,6 +9,7 @@ local function print_angle(s, x, y, c, a)
 end
    
 function splash_state_init()
+    clear_table(splash_state)
     _update60 = splash_state_update
     _draw = splash_state_draw
 

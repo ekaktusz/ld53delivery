@@ -1,6 +1,7 @@
 mouse = {}
 
 function mouse_init()
+    clear_table(mouse)
     poke(0x5f2d, 1)
     mouse.x = 0
     mouse.y = 0

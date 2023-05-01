@@ -1,6 +1,7 @@
 inventory = {}
 
 function inventory_init()
+    clear_table(inventory)
     inventory.items = {nil, drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), nil, nil, nil}
     inventory.x = 0
     inventory.y = 0

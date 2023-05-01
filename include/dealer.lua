@@ -1,6 +1,8 @@
 dealer = {}
 
 function dealer_init()
+    clear_table(dealer)
+
     dealer = get_objects_for_sprite_num(134,32,16,"dealer")[1]
 
     --shop

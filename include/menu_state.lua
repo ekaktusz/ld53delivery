@@ -1,6 +1,7 @@
 local menu_state = {}
 
 function menu_state_init()
+    clear_table(menu_state)
     _update60 = menu_state_update
     _draw = menu_state_draw
 

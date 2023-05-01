@@ -1,6 +1,7 @@
 fences = {}
 
 function fences_init()
+    clear_table(fences)
     fences = get_objects_for_sprite_num(184,8,8,"fences")
     fences.spr = 184
 end
