@@ -89,4 +89,7 @@ function drug_draw(drug)
     elseif drug.type == "cocaine" then
         sspr(80, 0, drug.w, drug.h, drug.x, drug.y)
     end
+    if drug.dragged then
+        sspr(48, 32, drug.w, drug.h, drug.x, drug.y) --zacsi
+    end
 end
