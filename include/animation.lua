@@ -24,7 +24,16 @@ function animation_update(animation)
     end
 end
 
-function animation_draw(animation, x, y)
+function animation_draw(animation, x, y, fx, fy)
     --sspr(animation.frames[animation.current_frame].x, animation.frames[animation.current_frame].y, animation.w, animation.h, x, y)
-    sspr(animation.frames[animation.current_frame].x,animation.frames[animation.current_frame].y,animation.frames[animation.current_frame].w,animation.frames[animation.current_frame].h,x,y)
+    sspr(animation.frames[animation.current_frame].x,
+         animation.frames[animation.current_frame].y,
+         animation.frames[animation.current_frame].w,
+         animation.frames[animation.current_frame].h,
+         x,
+         y,
+         animation.frames[animation.current_frame].w,
+         animation.frames[animation.current_frame].h,
+         fx,
+         fy)
 end

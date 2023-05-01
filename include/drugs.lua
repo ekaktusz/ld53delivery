@@ -29,9 +29,12 @@ function drug_update(drug)
                     pcenter = get_center(player.x,player.y,player.w,player.h)
                     ccenter = get_center(customer.x,customer.y,customer.w,customer.h)
                     if mouse_in_area(customer.x, customer.y, customer.w, customer.h)
-                    and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 30)
+                    and (get_distance(pcenter.x, pcenter.y, ccenter.x, ccenter.y) < 50)
                      then
-                        drug_sell(drug)
+                        if (customer.demand == drug.type) then
+                            drug_sell(drug)
+                            customer_reset_demand(customer)
+                        end
                     end
                 end
 
@@ -39,23 +42,46 @@ function drug_update(drug)
                     drug_use(drug)
                 end
             end
-
-            drug.dragged = false
-            mouse.dragged = false
+            if not mouse.click and mouse.old_click then
+                drug.dragged = false
+                mouse.dragged = false
+            end
         end
     end
 end
 
 function drug_sell(drug)
-    inventory_remove_drug(drug)
     mouse.dragged = false
+    
+    if (drug.type == "marijuana") then 
+        money+=20
+    elseif (drug.type == "ecstasy") then 
+        money+=30
+    elseif (drug.type == "cocaine") then 
+        money+=100
+    end
+    
+    inventory_remove_drug(drug)
     drug = nil
-    money+=10
+    player.anxiety += 0.1
 end
 
 function drug_use(drug)
+    mouse.dragged = false
+    
+    if (drug.type == "marijuana") then 
+        player.anxiety -= 0.5
+        player.energy -= 0.3
+    elseif (drug.type == "ecstasy") then 
+        player.energy += 0.5
+        player.anxiety += 0.2
+    elseif (drug.type == "cocaine") then 
+        player.energy = 0.7
+        player.anxiery = 0.19
+    end
+
     inventory_remove_drug(drug)
-    money-=10
+    drug = nil
 end
 
 function drug_draw(drug)
@@ -65,5 +91,8 @@ function drug_draw(drug)
         sspr(96, 0, drug.w, drug.h, drug.x, drug.y)
     elseif drug.type == "cocaine" then
         sspr(80, 0, drug.w, drug.h, drug.x, drug.y)
+    end
+    if drug.dragged then
+        sspr(48, 32, drug.w, drug.h, drug.x, drug.y) --zacsi
     end
 end

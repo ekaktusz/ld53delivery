@@ -1,7 +1,8 @@
 inventory = {}
 
 function inventory_init()
-    inventory.items = {nil, drug_new("marijuana"), drug_new("cocaine"), nil, nil, nil, nil, nil}
+    clear_table(inventory)
+    inventory.items = {nil, drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), drug_new("marijuana"), nil, nil, nil}
     inventory.x = 0
     inventory.y = 0
     inventory.w = 127
@@ -21,14 +22,18 @@ function inventory_draw()
     -- 4 pixels wide and 6 pixels high. 
     rectfill(cam.x, 105+cam.y, cam.x+9*4+2, 112+cam.y,7) -- outside 
     rectfill(1+cam.x, 106+cam.y, cam.x+9*4+1, 113+cam.y, 0) -- inside
+    print("inventory", 2+cam.x, 107+cam.y, 7) --text
 
-    for item in all(inventory.items) do
+    for i=1,8,1 do
+        local item = inventory.items[i]
         if item != nil then
             drug_draw(item)
         end
     end
 
-    print("inventory", 2+cam.x, 107+cam.y, 7) --text
+    rectfill(cam.x+127-35, 105+cam.y, 127+cam.x, 112+cam.y,7) -- outside 
+    rectfill(cam.x+127-34, 106+cam.y, 126+cam.x, 112+cam.y,0) -- inside 
+    print(money.."$",cam.x+(127-4*(#(tostr(money))+1)), 107+cam.y, 11)
 end
 
 function inventory_update()
@@ -66,4 +71,14 @@ function inventory_remove_drug(drug)
             return
         end
     end
+end
+
+function inventory_is_full()
+    for i=1,8,1 do
+        local item = inventory.items[i]
+        if item == nil then
+            return false
+        end
+    end
+    return true
 end

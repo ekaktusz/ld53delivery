@@ -1,6 +1,7 @@
 local menu_state = {}
 
 function menu_state_init()
+    clear_table(menu_state)
     _update60 = menu_state_update
     _draw = menu_state_draw
 
@@ -34,4 +35,6 @@ function menu_state_draw()
     
     transition_draw(menu_state.close_tran)
     transition_draw(menu_state.open_transition)
+
+    print(stat(9),cam.x+120,cam.y+120,7)
 end

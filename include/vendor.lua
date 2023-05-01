@@ -13,3 +13,9 @@ function wavy_text(text,f,color1,color2)
         x = x+4
     end
 end
+
+function clear_table(t)
+	for k in pairs (t) do
+		t [k] = nil
+	end
+end
