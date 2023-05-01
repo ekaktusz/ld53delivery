@@ -4,8 +4,8 @@ cam = {
 }
 
 function camera_set_position(x,y)
-    cam.x = mid(0,x,cam.max_x or 320)
-    cam.y = mid(0,y,cam.max_x or 32*4)
+    cam.x = mid(0,x,cam.max_x or 336)
+    cam.y = mid(0,y,cam.max_x or 34*4)
     camera(cam.x, cam.y)
 end
 
