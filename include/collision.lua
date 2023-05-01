@@ -3,6 +3,12 @@ function can_move(x,y,w,h)
     if (solid(x+w,y)) return false
     if (solid(x,y+h)) return false
     if (solid(x+w,y+h)) return false
+
+    if (solid(x+flr(w/2),y)) return false
+    if (solid(x,y+flr(h/2))) return false
+    if (solid(x+w,y+flr(h/2))) return false
+    if (solid(x+flr(w/2),y+h)) return false
+
     return true
 end
 
