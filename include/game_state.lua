@@ -114,6 +114,7 @@ function game_state_draw()
     
     player_draw()
     customers_draw()
+    customers_draw_demand()
     speakers_draw()
     fences_draw_front()
     rect(7*8,11*8,7*8,23*8,6)

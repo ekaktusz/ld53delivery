@@ -102,11 +102,10 @@ local function customer_draw(customer)
     else
         animation_draw(customer.animation, customer.x, customer.y)
     end
+end
 
+local function customer_draw_demand(customer)
     -- draw demand
-
-    
-
     if demand_anim_timer < 120 then
         if customer.demand == "marijuana" then
             sspr(48, 0, 16, 16, customer.x, customer.y-16)
@@ -152,6 +151,12 @@ end
 function customers_draw()
     for customer in all(customers) do
         customer_draw(customer)
+    end
+end
+
+function customers_draw_demand()
+    for customer in all(customers) do
+        customer_draw_demand(customer)
     end
 end
 
