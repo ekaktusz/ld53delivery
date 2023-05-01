@@ -39,6 +39,11 @@ end
 
 function game_state_update()
     --if (game_over) return
+    if game_over then
+        update_game_over_screen()
+        mouse_update()
+        return
+    end
     
     game_timer += 1
     
@@ -97,6 +102,7 @@ function game_state_update()
 
     bar_update(energy_bar, player.energy)
     bar_update(anxiety_bar, player.anxiety)
+    
 end
 
 function game_state_draw()
