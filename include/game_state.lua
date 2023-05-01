@@ -62,6 +62,7 @@ function game_state_update()
         passed_seconds += 1
         player.energy -= 0.008
         if passed_seconds >= game_duration_seconds then
+            game_over = true
             init_game_over_screen("yourwinner")
         end
     end
@@ -91,7 +92,7 @@ function game_state_update()
     if player.energy <= 0 and not game_over then
         -- TODO game over
         game_over = true
-        init_game_over_screen("energy")
+        init_game_over_screen("yourwinner")
     elseif player.energy >= 1 then
         player.energy = 1
     end

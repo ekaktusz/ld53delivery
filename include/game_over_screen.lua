@@ -12,6 +12,11 @@ function init_game_over_screen(_reason)
         frame_col = 7,
         reason = _reason
     }
+
+    if _reason == "yourwinner" then
+        game_over_screen.y = 20 + cam.y
+    end
+
     game_over_screen.reset_btn = button_new(game_over_screen.x-cam.x+ 29, --x coord
                                             game_over_screen.y-cam.y+ 35,  -- y coord
                                             flr(game_over_screen.sx/3), -- width
@@ -28,7 +33,9 @@ function draw_game_over_screen()
 
     local offsetx = 30
     local offsety = 7
-    sspr(0,16,32,16,game_over_screen.x+offsetx,game_over_screen.y+offsety)
+    if game_over_screen.reason != "yourwinner" then
+        sspr(0,16,32,16,game_over_screen.x+offsetx,game_over_screen.y+offsety)
+    end
 
     local offsetx = 5
     local offsety = 26
