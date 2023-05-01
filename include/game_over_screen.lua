@@ -61,11 +61,11 @@ function draw_game_over_screen()
     elseif game_over_screen.reason == "energy" then
         print("low energy killed you", game_over_screen.x+offsetx,game_over_screen.y+offsety, 8)
     elseif game_over_screen.reason == "yourwinner" then
-        print("gumbo jack     50000$", game_over_screen.x+offsetx,game_over_screen.y+offsety, 7)
-        print("ken kendo       1000$", game_over_screen.x+offsetx,game_over_screen.y+offsety+6, 7)
-        print("nitro nick       500$", game_over_screen.x+offsetx,game_over_screen.y+offsety+12, 7)
-        print("hawkeye bill     100$", game_over_screen.x+offsetx,game_over_screen.y+offsety+18, 7)
-        print("you            "..money.."$", game_over_screen.x+offsetx,game_over_screen.y+offsety+28, 11)
+        print("gumbo jack      1742$", game_over_screen.x+offsetx,game_over_screen.y+offsety, 7)
+        print("ken kendo       1032$", game_over_screen.x+offsetx,game_over_screen.y+offsety+6, 7)
+        print("nitro nick       750$", game_over_screen.x+offsetx,game_over_screen.y+offsety+12, 7)
+        print("hawkeye bill      89$", game_over_screen.x+offsetx,game_over_screen.y+offsety+18, 7)
+        print("you             "..money.."$", game_over_screen.x+offsetx,game_over_screen.y+offsety+28, 11)
     end
 
     button_draw(game_over_screen.reset_btn)
