@@ -33,6 +33,9 @@ function drug_update(drug)
                      then
                         if (customer.demand == drug.type) then
                             drug_sell(drug)
+                            if customer.type == "owl" then
+                                customer.high = true
+                            end
                             customer_reset_demand(customer)
                         end
                     end

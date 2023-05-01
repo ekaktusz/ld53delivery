@@ -2,6 +2,8 @@ customers = {}
 
 local demand_types = {"marijuana", "ecstasy", "cocaine"}
 
+local demand_anim_timer = 0
+
 local function table_concat(t1,t2) --feltetelezzuk hogy object
     for i=1,#t2 do
         t1[#t1+1] = {
@@ -13,7 +15,8 @@ local function table_concat(t1,t2) --feltetelezzuk hogy object
             animation=t2[i].animation,
             demand = t2[i].demand,
             demand_timer = t2[i].demand_timer,
-            demand_time = t2[i].demand_time
+            demand_time = t2[i].demand_time,
+            high = t2[i].high
         }
         --for key, value in pairs(t2) do
         --    t1[key] = value
@@ -52,14 +55,18 @@ function customer_init(customer,_type)
     elseif _type == "racoon" then
         local frames = { {x=96, y=96, w=_w, h=_h}, {x=96, y=112, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
-    elseif _type == "owl" then
-        local frames = { {x=112, y=96, w=_w, h=_h}, {x=112, y=112, w=_w, h=_h} }
+    elseif _type == "crow" then
+        local frames = { {x=0, y=64, w=_w, h=_h}, {x=0, y=80, w=_w, h=_h} }
+        customer.animation = animation_new(frames, 20)
+    elseif _type == "fox" then
+        local frames = { {x=112, y=32, w=_w, h=_h}, {x=112, y=48, w=_w, h=_h} }
         customer.animation = animation_new(frames, 20)
     end
 
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(100) * 60
+    customer.demand_time = rnd(100) 
+    customer.high = false
 
     return customer
 end
@@ -71,7 +78,9 @@ function customer_reset_demand(customer)
 end
 
 local function customer_update(customer)
-    animation_update(customer.animation)
+    if customer.type != "owl" then
+        animation_update(customer.animation)
+    end
     
     --w when dont have demand
     if customer.demand == nil then
@@ -84,14 +93,27 @@ local function customer_update(customer)
 end
 
 local function customer_draw(customer)
-    animation_draw(customer.animation, customer.x, customer.y)
+    if customer.type == "owl" then
+        if customer.high then
+            sspr(112,112,16,16,customer.x,customer.y)
+        else
+            sspr(112,96,16,16,customer.x,customer.y)
+        end
+    else
+        animation_draw(customer.animation, customer.x, customer.y)
+    end
+end
 
-    if customer.demand == "marijuana" then
-        sspr(48, 0, 16, 16, customer.x, customer.y-16)
-    elseif customer.demand == "ecstasy" then
-        sspr(96, 0, 16, 16, customer.x, customer.y-16)
-    elseif customer.demand == "cocaine" then
-        sspr(80, 0, 16, 16, customer.x, customer.y-16)
+local function customer_draw_demand(customer)
+    -- draw demand
+    if demand_anim_timer < 120 then
+        if customer.demand == "marijuana" then
+            sspr(48, 0, 16, 16, customer.x, customer.y-16)
+        elseif customer.demand == "ecstasy" then
+            sspr(96, 0, 16, 16, customer.x, customer.y-16)
+        elseif customer.demand == "cocaine" then
+            sspr(80, 0, 16, 16, customer.x, customer.y-16)
+        end
     end
 end
 
@@ -108,6 +130,8 @@ function customers_load()
     local chickens = get_objects_for_sprite_num(192,16,16,"chicken")
     local racoons = get_objects_for_sprite_num(204,16,16,"racoon")
     local owls = get_objects_for_sprite_num(206,16,16,"owl")
+    local crows = get_objects_for_sprite_num(128,16,16,"crow")
+    local foxs = get_objects_for_sprite_num(78,16,16,"fox")
 
 
     table_concat(customers, turtles)
@@ -120,6 +144,8 @@ function customers_load()
     table_concat(customers, chickens)
     table_concat(customers, racoons)
     table_concat(customers, owls)
+    table_concat(customers, crows)
+    table_concat(customers, foxs)
 end
 
 function customers_draw()
@@ -128,7 +154,18 @@ function customers_draw()
     end
 end
 
+function customers_draw_demand()
+    for customer in all(customers) do
+        customer_draw_demand(customer)
+    end
+end
+
 function customers_update()
+    demand_anim_timer += 1
+    if demand_anim_timer >= 150 then
+        demand_anim_timer = 0
+    end
+
     for customer in all(customers) do
         customer_update(customer)
     end

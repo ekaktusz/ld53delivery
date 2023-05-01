@@ -39,6 +39,11 @@ end
 
 function game_state_update()
     --if (game_over) return
+    if game_over then
+        update_game_over_screen()
+        mouse_update()
+        return
+    end
     
     game_timer += 1
     
@@ -97,6 +102,7 @@ function game_state_update()
 
     bar_update(energy_bar, player.energy)
     bar_update(anxiety_bar, player.anxiety)
+    
 end
 
 function game_state_draw()
@@ -108,7 +114,7 @@ function game_state_draw()
     
     player_draw()
     customers_draw()
-    dealer_draw()
+    customers_draw_demand()
     speakers_draw()
     fences_draw_front()
     rect(7*8,11*8,7*8,23*8,6)
@@ -129,10 +135,10 @@ function game_state_draw()
     print("anxiety:",cam.x+anxiety_bar.x-32, cam.y+2, 7)
 
     rect(cam.x,cam.y,127+cam.x,127+cam.y,7)--frame
+    
+    dealer_draw()
 
     inventory_draw()
-
-    
 
     --hitboxes_draw()
 
