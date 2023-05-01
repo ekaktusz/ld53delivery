@@ -65,7 +65,7 @@ function customer_init(customer,_type)
 
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(300) * 0
+    customer.demand_time = rnd(300) * 60
     customer.current_drug = nil
 
     customer.just_drugged = nil
