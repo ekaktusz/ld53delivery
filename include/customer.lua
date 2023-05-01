@@ -2,6 +2,8 @@ customers = {}
 
 local demand_types = {"marijuana", "ecstasy", "cocaine"}
 
+local demand_anim_timer = 0
+
 local function table_concat(t1,t2) --feltetelezzuk hogy object
     for i=1,#t2 do
         t1[#t1+1] = {
@@ -13,7 +15,8 @@ local function table_concat(t1,t2) --feltetelezzuk hogy object
             animation=t2[i].animation,
             demand = t2[i].demand,
             demand_timer = t2[i].demand_timer,
-            demand_time = t2[i].demand_time
+            demand_time = t2[i].demand_time,
+            high = t2[i].high
         }
         --for key, value in pairs(t2) do
         --    t1[key] = value
@@ -62,7 +65,8 @@ function customer_init(customer,_type)
 
     customer.demand = nil
     customer.demand_timer = 0
-    customer.demand_time = rnd(100) * 60
+    customer.demand_time = rnd(100) 
+    customer.high = false
 
     return customer
 end
@@ -74,7 +78,9 @@ function customer_reset_demand(customer)
 end
 
 local function customer_update(customer)
-    animation_update(customer.animation)
+    if customer.type != "owl" then
+        animation_update(customer.animation)
+    end
     
     --w when dont have demand
     if customer.demand == nil then
@@ -87,14 +93,28 @@ local function customer_update(customer)
 end
 
 local function customer_draw(customer)
-    animation_draw(customer.animation, customer.x, customer.y)
+    if customer.type == "owl" then
+        if customer.high then
+            sspr(112,112,16,16,customer.x,customer.y)
+        else
+            sspr(112,96,16,16,customer.x,customer.y)
+        end
+    else
+        animation_draw(customer.animation, customer.x, customer.y)
+    end
 
-    if customer.demand == "marijuana" then
-        sspr(48, 0, 16, 16, customer.x, customer.y-16)
-    elseif customer.demand == "ecstasy" then
-        sspr(96, 0, 16, 16, customer.x, customer.y-16)
-    elseif customer.demand == "cocaine" then
-        sspr(80, 0, 16, 16, customer.x, customer.y-16)
+    -- draw demand
+
+    
+
+    if demand_anim_timer < 120 then
+        if customer.demand == "marijuana" then
+            sspr(48, 0, 16, 16, customer.x, customer.y-16)
+        elseif customer.demand == "ecstasy" then
+            sspr(96, 0, 16, 16, customer.x, customer.y-16)
+        elseif customer.demand == "cocaine" then
+            sspr(80, 0, 16, 16, customer.x, customer.y-16)
+        end
     end
 end
 
@@ -136,6 +156,11 @@ function customers_draw()
 end
 
 function customers_update()
+    demand_anim_timer += 1
+    if demand_anim_timer >= 150 then
+        demand_anim_timer = 0
+    end
+
     for customer in all(customers) do
         customer_update(customer)
     end
